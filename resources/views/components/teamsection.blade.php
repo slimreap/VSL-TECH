@@ -10,7 +10,7 @@
       <div class="row">
         <div class="col-lg-4 col-md-6 d-flex align-items-stretch">
           <div class="member">
-            <img src="assets/img/team/team-1.jpg" alt="">
+            <img src="" alt="">
             <h4>PAPI SAR</h4>
             <span>Chief Executive Officer</span>
             <p>
@@ -27,7 +27,7 @@
 
         <div class="col-lg-4 col-md-6 d-flex align-items-stretch">
           <div class="member">
-            <img src="assets/img/team/team-2.jpg" alt="">
+            <img src="" alt="">
             <h4>BRUDAH Vryll</h4>
             <span>Product Manager</span>
             <p>
@@ -44,7 +44,7 @@
 
         <div class="col-lg-4 col-md-6 d-flex align-items-stretch">
           <div class="member">
-            <img src="assets/img/team/team-3.jpg" alt="">
+            <img src="" alt="">
             <h4>PAPI LES</h4>
             <span>CTO</span>
             <p>

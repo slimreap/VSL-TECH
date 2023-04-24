@@ -44,5 +44,5 @@ Route::get('/products/productspheriperals', function () {
 
 // route for services
 Route::get('/services', function () {
-    return view('index');
+    return view('services.services');
 })->name('services');
