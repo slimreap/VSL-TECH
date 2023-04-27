@@ -1,4 +1,4 @@
-<x-productslayout>
+<x-serviceslayout>
 
 <x-slot name="title">
     Services
@@ -147,4 +147,4 @@
       </div>
   </div>
 </section>
-</x-productslayout>
+</x-serviceslayout>

@@ -46,3 +46,10 @@ Route::get('/products/productspheriperals', function () {
 Route::get('/services', function () {
     return view('services.services');
 })->name('services');
+
+Route::get('services/availserviceform', function (){
+    return view('services.availserviceform');
+});
+Route::get('services/availserviceform/receipt', function (){
+    return view('services.receipt');
+});
