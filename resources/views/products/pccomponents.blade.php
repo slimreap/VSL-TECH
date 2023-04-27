@@ -6,29 +6,32 @@
 
     <x-products.pccomponentnavbar/>
 
-    <h3 class="fs-2">Chassis Fan</h3>
-
     <div class="row">
+    @foreach ($pccomponents as $components)
+      
+
+
         <div class="col">
+
             <a href="">
                 <img class="w-100" src="{{asset('storage/E-commerce/1920-x-700-Intel-13th-gen-D21T.png')}}" alt="">
             </a>
+            <div class="">
+                {{$components->brand_name}}
+            </div>
+            <div class="">
+                {{$components->product_model}}
+            </div>
+            <div class="">
+                {{$components->description}}
+            </div>
+            <div class="">
+                {{$components->price}}
+            </div>
         </div>
-        <div class="col">
-            <a href="">
-                <img class="w-100" src="{{asset('storage/E-commerce/1920-x-700-Intel-13th-gen-D21T.png')}}" alt="">
-            </a>
-        </div>
-        <div class="col">
-            <a href="">
-                <img class="w-100" src="{{asset('storage/E-commerce/1920-x-700-Intel-13th-gen-D21T.png')}}" alt="">
-            </a>
-        </div>
-        <div class="col">
-            <a href="">
-                <img class="w-100" src="{{asset('storage/E-commerce/1920-x-700-Intel-13th-gen-D21T.png')}}" alt="">
-            </a>
-        </div>
-    </div>
+
+    @endforeach
+    
+</div>
     
 </x-productslayout>
