@@ -1,4 +1,4 @@
-<footer id="footer">
+<footer id="footer" style = "margin-top: 300px;">
 
     <div class="footer-top">
 

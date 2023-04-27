@@ -1166,7 +1166,7 @@ section {
     background-color: #f3f4f6;
     color: #5f687b;
     font-size: 14px;
-    position: relative;
+    position: fixed;
 }
 
 #footer .footer-top {

@@ -51,3 +51,10 @@ Route::get('/services', function () {
 
 // route for listing of pc components
 Route::get('/products/pccomponents', [Pc_componentsController::class, 'listpccomponents'])->name('productspccomponents');
+
+Route::get('services/availserviceform', function (){
+    return view('services.availserviceform');
+});
+Route::get('services/availserviceform/receipt', function (){
+    return view('services.receipt');
+});

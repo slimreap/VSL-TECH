@@ -1,4 +1,4 @@
-<x-productslayout>
+<x-serviceslayout>
 
     <x-slot name="title">
         Avail Service
@@ -80,4 +80,4 @@
       </div>
     </div>
 
-</x-productslayout>
+</x-serviceslayout>
