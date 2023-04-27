@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\Pc_componentsController;
+use App\Http\Controllers\ProductListController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -18,14 +20,12 @@ Route::get('/', function () {
 })->name('home');
 
 // route for products
-Route::get('/products', function () {
-    return view('products.productlist');
-})->name('products');
+Route::get('/products',[ProductListController::class, 'productList'])->name('products');
 
 // route for pc components
-Route::get('/products/pccomponents', function () {
-    return view('products.pccomponents');
-})->name('productspccomponents');
+// Route::get('/products/pccomponents', function () {
+//     return view('products.pccomponents');
+// })->name('productspccomponents');
 
 // route for laptops
 Route::get('/products/laptops', function () {
@@ -46,3 +46,8 @@ Route::get('/products/productspheriperals', function () {
 Route::get('/services', function () {
     return view('services.services');
 })->name('services');
+
+
+
+// route for listing of pc components
+Route::get('/products/pccomponents', [Pc_componentsController::class, 'listpccomponents'])->name('productspccomponents');
