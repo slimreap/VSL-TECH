@@ -22,15 +22,9 @@ Route::get('/', function () {
 // route for products
 Route::get('/products',[ProductListController::class, 'productList'])->name('products');
 
-// route for pc components
-// Route::get('/products/pccomponents', function () {
-//     return view('products.pccomponents');
-// })->name('productspccomponents');
 
 // route for laptops
-Route::get('/products/laptops', function () {
-    return view('products.laptops');
-})->name('productslaptops');
+Route::get('/products/laptops/{brandname?}', [ProductListController::class, 'laptopList'])->name('productslaptops');
 
 // route for desktop packages
 Route::get('/products/desktoppackages', function () {
@@ -59,11 +53,14 @@ Route::get('/services', function () {
     return view('services.services');
 })->name('services');
 
-
+// route for product component such as **CHASIS**
+Route::get('/products/pccomponents/{component?}', [ProductListController::class, 'individualPcComponent'])->name('productsindividualpccomponent');
 
 // route for listing of pc components
 Route::get('/products/pccomponents', [Pc_componentsController::class, 'listpccomponents'])->name('productspccomponents');
 
+
+// route for services
 Route::get('services/availserviceform', function (){
     return view('services.availserviceform');
 });
