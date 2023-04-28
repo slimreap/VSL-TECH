@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 
 class Pc_componentsController extends Controller
 {
-    public function listpccomponents(){
+    public function listpccomponents($component = ""){
         // $componentarray = [
         //     'component' => [],
         //     'brand_name' => [],
@@ -15,8 +15,8 @@ class Pc_componentsController extends Controller
         //     'description' => [],
         //     'price' => [],
         // ];
+        ($component) ? $pccomponents = PC_components::where('component',$component)->get() : $pccomponents = PC_components::all();
         
-        $pccomponents = PC_components::all();
         // foreach($pccomponents as $components){
         //     collect($componentarray['component'])->push($components->component);
 

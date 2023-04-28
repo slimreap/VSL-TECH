@@ -22,15 +22,15 @@ class ProductListController extends Controller
         ]);
     }
 
-    public function individualPcComponent($component = ""){
-        $currentcomponent = $component;
-        $component = PC_components::where('component',$component)->get();
+    // public function individualPcComponent($component = ""){
+    //     $currentcomponent = $component;
+    //     $component = PC_components::where('component',$component)->get();
 
-        return view('products.individualpccomponents',[
-            'components' => $component,
-            'currentcomponent' => $currentcomponent
-        ]);
-    }
+    //     return view('products.individualpccomponents',[
+    //         'components' => $component,
+    //         'currentcomponent' => $currentcomponent
+    //     ]);
+    // }
 
 
     public function laptopList($brandname = "") {

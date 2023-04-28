@@ -49,11 +49,8 @@ Route::get('/services', function () {
     return view('services.services');
 })->name('services');
 
-// route for product component such as **CHASIS**
-Route::get('/products/pccomponents/{component?}', [ProductListController::class, 'individualPcComponent'])->name('productsindividualpccomponent');
-
 // route for listing of pc components
-Route::get('/products/pccomponents', [Pc_componentsController::class, 'listpccomponents'])->name('productspccomponents');
+Route::get('/products/pccomponents/{component?}', [Pc_componentsController::class, 'listpccomponents'])->name('productspccomponents');
 
 
 // route for services
