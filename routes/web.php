@@ -36,6 +36,14 @@ Route::get('/products/productspheriperals', function () {
     return view('products.productspheriperals');
 })->name('productspheriperals');
 
+Route::get('products/products_details', function(){
+    return view('products_details');
+});
+
+Route::get('products/products_details/product_customer_form', function(){
+    return view('product_customer_form');
+});
+
 // route for services
 Route::get('/services', function () {
     return view('services.services');
