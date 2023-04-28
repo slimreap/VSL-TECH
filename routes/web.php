@@ -43,11 +43,15 @@ Route::get('/products/productspheriperals', function () {
 })->name('productspheriperals');
 
 Route::get('products/products_details', function(){
-    return view('products_details');
+    return view('productview');
 });
 
 Route::get('products/products_details/product_customer_form', function(){
     return view('product_customer_form');
+});
+
+Route::get('products/products_details/product_customer_form/product_receipt', function(){
+    return view('product_receipt');
 });
 
 // route for services

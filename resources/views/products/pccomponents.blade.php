@@ -8,9 +8,6 @@
 
     <div class="row">
     @foreach ($pccomponents as $components)
-      
-
-
         <div class="col">
 
             <a href="">
