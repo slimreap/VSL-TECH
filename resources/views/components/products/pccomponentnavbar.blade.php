@@ -72,29 +72,29 @@
     <h2>COMPUTER SETS:</h2>
   <nav class="navbar1-columns">
     <ul>
-      <li><a class="nav-link scrollto " href="#one">Chassis Fan</a></li>  
-      <li><a class="nav-link scrollto" href="#two">CPU Cooling</a></li>
-      <li><a class="nav-link scrollto " href="#three">Graphics Card</a></li>
+      <li><a class="nav-link scrollto " href="{{route('productsindividualpccomponent',['component' => 'Chassis Fan'])}}">Chassis Fan</a></li>  
+      <li><a class="nav-link scrollto" href="{{route('productsindividualpccomponent',['component' => 'CPU-Cooling'])}}">CPU Cooling</a></li>
+      <li><a class="nav-link scrollto " href="{{route('productsindividualpccomponent',['component' => 'Graphics Card'])}}">Graphics Card</a></li>
     </ul>
   </nav>
   <nav class="navbar1-columns">
     <ul>
-        <li><a class="nav-link scrollto " href="#four">Hard Disk</a></li>  
-        <li><a class="nav-link scrollto" href="#five">Memory</a></li>
-        <li><a class="nav-link scrollto " href="#six">Motherboard</a></li>
+        <li><a class="nav-link scrollto " href="{{route('productsindividualpccomponent',['component' => 'Hard Disk'])}}">Hard Disk</a></li>  
+        <li><a class="nav-link scrollto" href="{{route('productsindividualpccomponent',['component' => 'Memory'])}}">Memory</a></li>
+        <li><a class="nav-link scrollto " href="{{route('productsindividualpccomponent',['component' => 'Motherboard'])}}">Motherboard</a></li>
     </ul>
   </nav>
   <nav class="navbar1-columns">
     <ul>
-        <li><a class="nav-link scrollto " href="#seven">PC Case</a></li>  
-        <li><a class="nav-link scrollto" href="#eight">Power Supply</a></li>
+        <li><a class="nav-link scrollto " href="{{route('productsindividualpccomponent',['component' => 'PC Case'])}}">PC Case</a></li>  
+        <li><a class="nav-link scrollto" href="{{route('productsindividualpccomponent',['component' => 'Power Supply'])}}">Power Supply</a></li>
         <li><a class="nav-link scrollto " href="#nine">Processor</a></li>
     </ul>
   </nav>
   <nav class="navbar1-columns">
     <ul>
-        <li><a class="nav-link scrollto " href="#ten">Processor Tray</a></li>  
-        <li><a class="nav-link scrollto" href="#Eleven">Solid State Drive</a></li>
+        <li><a class="nav-link scrollto " href="{{route('productsindividualpccomponent',['component' => 'Processor Tray'])}}">Processor Tray</a></li>  
+        <li><a class="nav-link scrollto" href="{{route('productsindividualpccomponent',['component' => 'Solid State Drive'])}}">Solid State Drive</a></li>
     </ul>
   </nav>
 

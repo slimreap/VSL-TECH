@@ -6,44 +6,41 @@
  {{-- subnavbar --}}
  <div class="h-25 subnavbar">
     <div class="row">
-        <div class="col text-white fs-3">
-            Laptops:
-        </div>
 
         <div class="col">
             <div class="row text-white fs-3">
-                <a class="text-white fs-3" href="">Apple</a>
+                <a class="text-white fs-3" href="{{route('productslaptops',['brandname' => 'Apple'])}}">Apple</a>
                 
             </div>
             <div class="row text-white fs-3">
-                <a class="text-white fs-3" href="">HP </a>
+                <a class="text-white fs-3" href="{{route('productslaptops',['brandname' => 'Hp'])}}">HP </a>
             </div>
             <div class="row text-white fs-3">
-                 <a class="text-white fs-3" href="">Lenovo</a>
-            </div>
-        </div>
-
-        <div class="col">
-            <div class="row text-white fs-3">
-                 <a class="text-white fs-3" href="">Dell</a>
-            </div>
-            <div class="row text-white fs-3">
-                 <a class="text-white fs-3" href="">Acer</a>
-            </div>
-            <div class="row text-white fs-3">
-                <a class="text-white fs-3" href="">Asus </a>
+                 <a class="text-white fs-3" href="{{route('productslaptops',['brandname' => 'Lenovo'])}}">Lenovo</a>
             </div>
         </div>
 
         <div class="col">
             <div class="row text-white fs-3">
-                 <a class="text-white fs-3" href="">Razer</a>
+                 <a class="text-white fs-3" href="{{route('productslaptops',['brandname' => 'Dell'])}}">Dell</a>
             </div>
             <div class="row text-white fs-3">
-                <a class="text-white fs-3" href="">LG </a>
+                 <a class="text-white fs-3" href="{{route('productslaptops',['brandname' => 'Acer'])}}">Acer</a>
             </div>
             <div class="row text-white fs-3">
-                 <a class="text-white fs-3" href="">Samsung</a>
+                <a class="text-white fs-3" href="{{route('productslaptops',['brandname' => 'Asus'])}}">Asus </a>
+            </div>
+        </div>
+
+        <div class="col">
+            <div class="row text-white fs-3">
+                 <a class="text-white fs-3" href="{{route('productslaptops',['brandname' => 'Razer'])}}">Razer</a>
+            </div>
+            <div class="row text-white fs-3">
+                <a class="text-white fs-3" href="{{route('productslaptops',['brandname' => 'LG'])}}">LG </a>
+            </div>
+            <div class="row text-white fs-3">
+                 <a class="text-white fs-3" href="{{route('productslaptops',['brandname' => 'Samsung'])}}">Samsung</a>
             </div>
         </div>
 
@@ -67,29 +64,25 @@
 </div>
 
 
-
-<h3 class="fs-2">Apple</h3>
+@foreach ($laptops as $laptop)
+    
 
 <div class="row">
     <div class="col">
         <a href="">
-            <img class="w-100" src="{{asset('storage/E-commerce/1920-x-700-Intel-13th-gen-D21T.png')}}" alt="">
+            <img class="w-100" src="{{$laptop['img_url']}}" alt="">
         </a>
-    </div>
-    <div class="col">
-        <a href="">
-            <img class="w-100" src="{{asset('storage/E-commerce/1920-x-700-Intel-13th-gen-D21T.png')}}" alt="">
-        </a>
-    </div>
-    <div class="col">
-        <a href="">
-            <img class="w-100" src="{{asset('storage/E-commerce/1920-x-700-Intel-13th-gen-D21T.png')}}" alt="">
-        </a>
-    </div>
-    <div class="col">
-        <a href="">
-            <img class="w-100" src="{{asset('storage/E-commerce/1920-x-700-Intel-13th-gen-D21T.png')}}" alt="">
-        </a>
+        <div class="">
+            {{$laptop['brand_name']}}
+        </div>
+        <div class="">
+            {{$laptop['description']}}
+        </div>
+        <div class="">
+            {{$laptop['price']}}
+        </div>
     </div>
 </div>
+
+@endforeach
 </x-productslayout>
