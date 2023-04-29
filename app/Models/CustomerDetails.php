@@ -19,6 +19,6 @@ class CustomerDetails extends Model
     ];
     public function customertransaction()
     {
-        return $this->hasMany(CustomerTransaction::class);
+        return $this->morphMany(CustomerTransaction::class, 'transactionable');
     }
 }

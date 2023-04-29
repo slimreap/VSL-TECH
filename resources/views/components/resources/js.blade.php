@@ -8,7 +8,7 @@
 
   <!-- Template Main JS File -->
   <script src="{{asset('js/main.js')}}"></script>
-  <script src="{{asset('js/confirm_modal.js')}}"></script>
+  
 
   {{-- alpine js --}}
   

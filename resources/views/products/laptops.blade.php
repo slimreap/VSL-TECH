@@ -69,7 +69,7 @@
 
 <div class="row">
     <div class="col">
-        <a href="">
+        <a href="{{route('productform',['id' => $laptop['id']])}}">
             <img class="w-100" src="{{$laptop['img_url']}}" alt="">
         </a>
         <div class="">

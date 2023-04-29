@@ -25,6 +25,10 @@ Route::get('/products',[ProductListController::class, 'productList'])->name('pro
 
 // route for laptops
 Route::get('/products/laptops/{brandname?}', [ProductListController::class, 'laptopList'])->name('productslaptops');
+// route for laptop customer form
+Route::post('/products/laptops/checkout/{id?}', [ProductListController::class, 'productcheckout'])->name('productcheckout');
+// route for laptop customer checkout
+Route::get('/products/laptops/details/{id?}', [ProductListController::class, 'laptopcustomerform'])->name('productform');
 
 // route for desktop packages
 Route::get('/products/desktoppackages', function () {
@@ -41,7 +45,7 @@ Route::get('products/products_details', function(){
 });
 
 Route::get('products/products_details/product_customer_form', function(){
-    return view('product_customer_form');
+    return view('products.productview');
 });
 
 Route::get('products/products_details/product_customer_form/product_receipt', function(){

@@ -3,7 +3,6 @@
     <x-slot name="title">
         Products
     </x-slot>
-
     {{-- productlist image --}}
     {{-- <img src="{{asset('storage/img/1920-x-700-Intel-13th-gen-D21T.png')}}" class="w-100" alt="">
     <div class="banner-ad"> --}}
@@ -31,11 +30,6 @@
 
         </div> --}}
 
-
-        
-        <section id="shop-section" >
-            <section id="Computer-sets"></section>
-
         @if (!$desktopPackages->isEmpty())
             
       
@@ -56,7 +50,7 @@
                   
                     <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12 margin_bottom_30_all">
                     <div class="product_list">
-                        <div class="product_img"> <img class="img-responsive" src="assets/img/1.jpg" alt=""> </div>
+                        <div class="product_img"> <img class="img-responsive" src="" alt=""> </div>
                         <div class="product_detail_btm">
                         <div class="center">
                             <h4><a href="it_shop_detail.html">{{$desktoppackages->set_name}}</a></h4>
@@ -96,7 +90,7 @@
               
                 <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12 margin_bottom_30_all">
                 <div class="product_list">
-                    <div class="product_img"> <img class="img-responsive" src="assets/img/1.jpg" alt=""> </div>
+                    <div class="product_img"> <img class="img-responsive" src="" alt=""> </div>
                     <div class="product_detail_btm">
                     <div class="center">
                         <h4><a href="it_shop_detail.html">{{$laptopPheriperal->prod_name}}</a></h4>
@@ -136,7 +130,6 @@
           
             <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12 margin_bottom_30_all">
             <div class="product_list">
-                <div class="product_img"> <img class="img-responsive" src="assets/img/1.jpg" alt=""> </div>
                 <div class="product_detail_btm">
                 <div class="center">
                     <h4><a href="it_shop_detail.html">{{$PcComponent->component}}</a></h4>

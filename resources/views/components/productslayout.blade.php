@@ -12,6 +12,7 @@
 
   {{-- css and fonts --}}
   <x-resources.css/>
+  <x-resources.js/>
 
 </head>
 
@@ -20,7 +21,7 @@
     <x-products.productcategory/>
 
     {{$slot}}
-    <x-resources.js/>
+    
 <x-footer/>
 </body>
 

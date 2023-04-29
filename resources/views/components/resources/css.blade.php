@@ -8,5 +8,5 @@
   <link href="{{asset('glightbox/css/glightbox.min.css')}}" rel="stylesheet">
   <link href="{{asset('swiper/swiper-bundle.min.css')}}" rel="stylesheet">
   <link href="{{asset('css/style.css')}}" rel="stylesheet">
-  <link href="{{asset('css/availserviceform_style.css')}}" rel = "stylesheet">
-  <link href="{{asset('css/receipt_confirm_modal.css')}}" rel="stylesheet">
+  {{-- <link href="{{asset('css/availserviceform_style.css')}}" rel = "stylesheet">
+  <link href="{{asset('css/receipt_confirm_modal.css')}}" rel="stylesheet"> --}}
