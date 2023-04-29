@@ -16,7 +16,8 @@ class CreateCustomerTransactionsTable extends Migration
         Schema::create('customer_transactions', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')->constrained('customer_details');
-            $table->morphs('transaction');
+            $table->unsignedBigInteger('transactionable_id');
+            $table->string('transactionable_type');
             $table->timestamps();
         });
     }

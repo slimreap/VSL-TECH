@@ -2,11 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\CustomerDetails;
-use App\Models\DesktopPackage;
-use App\Models\LaptopnPheriperals;
-use App\Models\PC_components;
 use Illuminate\Http\Request;
+use App\Models\PC_components;
+use App\Models\DesktopPackage;
+use App\Models\CustomerDetails;
+use App\Models\LaptopnPheriperals;
+use Illuminate\Support\Facades\DB;
 
 class ProductListController extends Controller
 {
@@ -80,7 +81,28 @@ class ProductListController extends Controller
     }
 
 
-    public function productcheckout(Request $request){
+    public function productcheckout($id = ""){
+        $laptoparray = [];
+        $laptop = LaptopnPheriperals::find($id);
+        // dd($laptop);
+
+            $laptoparray = [
+                'brand_name' => $laptop->brand_name,
+                'description' =>$laptop->description,
+                'price' =>$laptop->price,
+                'img_url' =>$laptop->getFirstMedia('laptops')->getUrl(),
+                'id' =>$laptop->id,
+            ];
+
+            // dd($laptoparray);
+        return view('buying.shippinginfo',[
+            'id' => $id,
+            'laptopdetails' => $laptoparray
+        ]);
+    }
+
+
+    public function confirmcheckout(Request $request){
         $customername = $request->input('completename');
         $emailaddress = $request->input('emailaddress');
         $finalcontactnumber = $request->input('finalcontactnumber');
@@ -88,16 +110,31 @@ class ProductListController extends Controller
         $finalstate = $request->input('finalstate');
         $productid = $request->input('productid');
 
+        DB::transaction(function () use ($customername, $emailaddress, $finalcontactnumber, $finaladdress, $finalstate, $productid) {
+            $laptop = LaptopnPheriperals::find($productid);
+            $customerdetails = CustomerDetails::create([
+                'name' => $customername,
+                'email' => $emailaddress,
+                'contact_number' => $finalcontactnumber,
+                'address' => $finaladdress . ' ' . $finalstate,
+            ]);
+            $laptop->transaction()->create(['user_id' => $customerdetails->id]);
+        });
+        
 
-        $customerdetails = CustomerDetails::create([
-            'name' => $customername,
-            'email' => $emailaddress,
-            'contact_number' => $finalcontactnumber,
-            'address' => $finaladdress . ' ' . $finalstate,
-            // 'city' => $finaladdress,
+    }
+
+
+    public function searchlaptop(Request $request){
+        $laptop = $request->input('query');
+
+        $laptop = LaptopnPheriperals::where('prod_name', 'like', "%$laptop%")->get();
+        // return view('search-results', compact('posts'));
+        // dd($laptop);
+        return response()->json([
+            'success' => true,
+            'data' => $laptop
         ]);
-
-        $customerdetails->customertransaction()->create();
     }
 
     

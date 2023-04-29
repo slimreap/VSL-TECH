@@ -9,9 +9,14 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 class CustomerTransaction extends Model
 {
     use HasFactory;
+    
+
+    protected $fillable = [
+        'user_id'
+    ];
     public function customerdetails()
     {
-        return $this->belongsTo(CustomerDetails::class);
+        return $this->belongsTo(CustomerDetails::class, 'user_id');
     }
 
     public function transactionable()
