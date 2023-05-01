@@ -5,20 +5,21 @@
     <div class="container">
         <div class="row">
           <div class="col-md-9">
-            <a href="#" style="text-align: left; font-size: 20px;" class="previous">&laquo; Go back!</a>
             <div class="row">
-              <div class="col-xl-6 col-lg-12 col-md-12">
+              <div class="col-6">
               <div class="product_view-img">
                 <div class='product_view-img1'> <img src="{{$laptopdetails['img_url']}}" alt="#" style="height: 500px;"/> </div>
               </div>
               </div>
+</div>
+</div>
               <div class="col-xl-6 col-lg-12 col-md-12 product_detail_side detail_style1">
                 <div class="product-heading">
                   <h2>{{$laptopdetails['brand_name']}}</h2>
                 </div>
                 <div class="product-detail-side"> <span><del>15</del></span><span class="new-price">{{$laptopdetails['price']}}</span> <span class="rating"> <i class="fa fa-star" aria-hidden="true"></i> <i class="fa fa-star" aria-hidden="true"></i> <i class="fa fa-star" aria-hidden="true"></i> <i class="fa fa-star" aria-hidden="true"></i> <i class="fa fa-star-o" aria-hidden="true"></i> </span> <span class="review">(5 customer review)</span> </div>
                 <br>
-                <div class="detail-contant">
+                <div class="detail-content">
                   <p>{{$laptopdetails['description']}}<br>
                     <span class="stock">2 in stock</span> </p>
                   <form class="cart" method="post" action="">

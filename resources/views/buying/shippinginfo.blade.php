@@ -4,7 +4,7 @@
         Shipping info
     </x-slot>
 
-<div class="container w-50 text-center position-relative"">
+<div class="container w-50 text-center position-relative">
     <div class="row">
         <div class="col">
             
@@ -86,9 +86,9 @@
   <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
       <div class="modal-content">
-        <div class="modal-header">
+        <div class="modal-header" style>
           <h1 class="modal-title fs-5" id="exampleModalLabel">Customer Details summary</h1>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          <button type="button" class="btn-close light" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
             <div class="row">
@@ -217,8 +217,8 @@
             <div class="row">
                <div class="col"></div>
                <div class="col">
-                <form action="{{route('productcheckout')}}" method="post">
-                    @csrf
+                <!-- <form action="{{route('productcheckout')}}" method="post">
+                    @csrf -->
                     <input type="text" name="productid" value="{{$laptop['id']}}">
                     <input type="text" id="checkoutfullname" name="completename">
                     <input type="text" id="checkoutemailaddress" name="emailaddress">
@@ -228,7 +228,7 @@
                     <button type="submit" class="btn-primary rounded-pill">
                         Checkout
                     </button>
-                </form>
+                <!-- </form> -->
                </div>
             </div>
         </div>
