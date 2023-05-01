@@ -217,9 +217,15 @@
             <div class="row">
                <div class="col"></div>
                <div class="col">
+<<<<<<< HEAD
                 <!-- <form action="{{route('productcheckout')}}" method="post">
                     @csrf -->
                     <input type="text" name="productid" value="{{$laptop['id']}}">
+=======
+                <form action="{{route('confirmcheckout')}}" method="post">
+                    @csrf
+                    <input type="text" name="productid" value="{{$laptopdetails['id']}}">
+>>>>>>> 2eab4565e925d539eaec27c546ed6eeef18039a5
                     <input type="text" id="checkoutfullname" name="completename">
                     <input type="text" id="checkoutemailaddress" name="emailaddress">
                     <input type="text" id="checkoutfinalcontactnumber" name="finalcontactnumber">
