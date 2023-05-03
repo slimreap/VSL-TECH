@@ -72,7 +72,7 @@ Route::get('services/availserviceform', function (){
 
 //might change the url path 
 Route::get('services/viewservice', function(){
-    return view('services.viewservice');
+    return view('services.viewservice   ');
 });
 Route::get('services/availserviceform/receipt', function (){
     return view('services.receipt');

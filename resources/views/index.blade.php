@@ -25,20 +25,8 @@
 
   <main id="main">
 
-    <!-- ======= Featured Services Section ======= -->
-  <x-featuredservices/>
-
     <!-- ======= About Section ======= -->
   <x-about/>
-
-    <!-- ======= Services Section ======= -->
-    <x-category/>
-
-
-    <!-- ======= Testimonials Section ======= -->
-    <x-testimonial/>
-
-    
 
     <!-- ======= Team Section ======= -->
     <x-teamsection/>

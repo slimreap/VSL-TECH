@@ -67,7 +67,7 @@
         <div class="row">
            
             <!-- Button trigger modal -->
-<button type="button" class="btn btn-primary" id="confirmshippingaddress" data-bs-toggle="modal" data-bs-target="#exampleModal">
+<button type="button" class="btn btn-primary" style = "background: #4F0354;" id="confirmshippingaddress" data-bs-toggle="modal" data-bs-target="#exampleModal">
     Confirm
   </button>
             
@@ -146,7 +146,7 @@
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-          <button id="confirmdetails" type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal2">Save changes</button>
+          <button id="confirmdetails" type="button" class="btn btn-primary" style="#4F0354;" data-bs-toggle="modal" data-bs-target="#exampleModal2">Save changes</button>
         </div>
       </div>
     </div>
@@ -240,7 +240,7 @@
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-          <button type="button" class="btn btn-primary">Save changes</button>
+          <button type="button" class="btn btn-primary" style="background: #4F0354;">Save changes</button>
         </div>
       </div>
     </div>
