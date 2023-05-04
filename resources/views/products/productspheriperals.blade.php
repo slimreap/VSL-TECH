@@ -4,33 +4,6 @@
      </x-slot>
 
           {{-- subnavbar --}}
- <div class="h-25 subnavbar">
-    <div class="row">
-        <div class="col text-white fs-3">
-            Pheriperals and Accessories:
-        </div>
-
-        <div class="col">
-            <div class="row text-white fs-3">
-                <a class="text-white fs-3" href="">Cables</a>
-                
-            </div>
-            <div class="row text-white fs-3">
-                <a class="text-white fs-3" href="">Earphones </a>
-            </div>
-            <div class="row text-white fs-3">
-                 <a class="text-white fs-3" href="">Mouse Pad</a>
-            </div>
-        </div>
-
-        <div class="col">
-            <div class="row text-white fs-3">
-                <a class="text-white fs-3" href="">Power Bank</a>
-                
-            </div>
-
-        </div>
-
 
         <div class="col">
             <div class="row text-white fs-3">

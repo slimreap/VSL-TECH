@@ -4,29 +4,31 @@
  </x-slot>
 
  {{-- subnavbar --}}
- 
-<div class="container">
+ <div class="container">
     <div class="row">
-        <div class="col-6">
-            @foreach ($laptops as $laptop)
-            <div class="col">
-                <a href="{{route('productform',['id' => $laptop['id']])}}">
-                    <img class="w-100" src="{{$laptop['img_url']}}" alt="">
-                </a>
-                <div class="">
-                    {{$laptop['brand_name']}}
+        <div class="col-12">
+            <div class="row">
+                @foreach ($laptops as $laptop)
+                <div class="col-md-3">
+                    <a href="{{route('productform',['id' => $laptop['id']])}}">
+                        <img class="w-100" src="{{$laptop['img_url']}}" alt="">
+                    </a>
+                    <div class="">
+                        {{$laptop['brand_name']}}
+                    </div>
+                    <div class="">
+                        {{$laptop['description']}}
+                    </div>
+                    <div class="">
+                        {{$laptop['price']}}
+                    </div>
                 </div>
-                <div class="">
-                    {{$laptop['description']}}
-                </div>
-                <div class="">
-                    {{$laptop['price']}}
-                </div>
+                @endforeach
             </div>
-            @endforeach
         </div>
     </div>
 </div>
+
 
 
 <div class="row" id="searchresult">
