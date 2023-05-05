@@ -64,6 +64,26 @@ class ProductListController extends Controller
         ]);
     }
 
+    //function for desktop packages
+    public function desktopPackagesList($setname =""){
+        $desktopPackageArray = [];
+
+        ($setname) ? $desktopPackages = DesktopPackage::where('set_name', $setname)->get():$desktopPackages = DesktopPackage::all();
+    foreach($desktopPackages as $desktopPackage){
+            $desktopPackageArray[]=[
+                'id' => $desktopPackage->id,
+                'img_url' => $desktopPackage->getFirstMedia('desktop')->getUrl(),
+                'set_name'=>$desktopPackage->set_name,
+                'price'=>$desktopPackage->price,
+                'created_at'=>$desktopPackage->created_at,
+                'updated_at'=>$desktopPackage->updated_at,
+            ];
+        }
+        return view('products.desktoppackages',[
+            'desktoppackages'=>$desktopPackageArray,
+        ]);
+    }
+
 
     public function laptopcustomerform($id  = ""){
         $laptoparray = [];

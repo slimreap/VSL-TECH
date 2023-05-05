@@ -37,9 +37,9 @@
         </a>
 
         <ul class="dropdown-menu hide" aria-labelledby="DeskstopPackagesDropdown">
-          <li><a class="dropdown-item" href="">Starter Pack</a></li>
-          <li><a class="dropdown-item" href="">Gaming Pack</a></li>
-          <li><a class="dropdown-item" href="">Streamer Pack</a></li>
+          <li><a class="dropdown-item" href="{{route('desktoppackages', ['setname'=>'Starter Pack'])}}">Starter Pack</a></li>
+          <li><a class="dropdown-item" href="{{route('desktoppackages', ['setname'=>'Gaming Pack'])}}">Gaming Pack</a></li>
+          <li><a class="dropdown-item" href="{{route('desktoppackages', ['setname'=>'Streamer Pack'])}}">Streamer Pack</a></li>
         </ul>
       </div>
 

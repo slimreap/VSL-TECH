@@ -20,7 +20,7 @@
             <span>Chief Executive Officer</span>
             <p style="text-align: justify;">
               Responsible for leading and managing the company's overall operations, overseeing financial performance, driving business growth, and implementing strategic plans.
-            </p>
+            </p>.
             <div class="social">
               <a href=""><i class="bi bi-twitter"></i></a>
               <a href=""><i class="bi bi-facebook"></i></a>

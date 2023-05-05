@@ -39,7 +39,7 @@ Route::post('/products/laptops/search', [ProductListController::class, 'searchla
 
 
 // route for desktop packages
-Route::get('/products/desktoppackages', [ProductListController::class, 'listdesktoppackages'])->name('listdesktoppackages');
+Route::get('/products/desktoppackages/{setname?}', [ProductListController::class, 'desktopPackagesList'])->name('desktoppackages');
 
 // route for pheriperals
 Route::get('/products/productspheriperals', function () {
