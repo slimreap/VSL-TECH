@@ -16,7 +16,7 @@
             <li><i class="bi bi-check-circle"></i> Providing excellent customer service</li>
             <li><i class="bi bi-check-circle"></i> Responsive</li>
           </ul>
-          <p style ="text-align:justify;">
+          <p style ="text-align:justify; margin-bottom: 30px;">
             Thank you for entrusting us with your needs. Your trust in our products and services is truly a testament to the hard work and dedication of our team.
           </p>
         </div>

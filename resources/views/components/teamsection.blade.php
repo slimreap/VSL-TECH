@@ -15,7 +15,7 @@
       <div class="row">
         <div class="col-lg-4 col-md-6 d-flex align-items-stretch">
           <div class="member">
-            <img src="" alt="">
+            <img src="{{asset('storage/E-commerce/sarhan.jpg')}}" alt="" class="img-fluid" style="width: 80%; height: 30%;">
             <h4>Sarhan Asakil</h4>
             <span>Chief Executive Officer</span>
             <p style="text-align: justify;">
@@ -32,7 +32,7 @@
 
         <div class="col-lg-4 col-md-6 d-flex align-items-stretch">
           <div class="member">
-            <img src="{{asset('storage/E-commerce/Vryll 2x2.jpg')}}" alt="" class="img-fluid" style="width: 80%; height: 50%;">
+            <img src="{{asset('storage/E-commerce/Vryll 2x2.jpg')}}" alt="" class="img-fluid" style="width: 80%; height: 30%;">
             <h4>Vryll Atilano</h4>
             <span>Product Manager</span>
             <p style="text-align:justify;">
@@ -51,7 +51,7 @@
 
         <div class="col-lg-4 col-md-6 d-flex align-items-stretch">
           <div class="member">
-            <img src="{{asset('storage/E-commerce/lester.jpg')}}" alt="" class="img-fluid" style="width: 50%; height: 50%;">
+            <img src="{{asset('storage/E-commerce/lester.jpg')}}" alt="" class="img-fluid" style="width: 80%; height: 30%;">
             <h4>Lester Leand Ricafort</h4>
             <span>CTO</span>
             <p style="text-align: justify;">

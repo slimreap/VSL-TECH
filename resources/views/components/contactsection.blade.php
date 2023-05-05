@@ -4,7 +4,7 @@
       <div class="section-title">
         <span>Contact</span>
         <h2>Contact</h2>
-        <p>Sit sint consectetur velit quisquam cupiditate impedit suscipit alias</p>
+        <p>"Happy to help your inquiries, please fill up the form below."</p>
       </div>
 
       <div class="row">
@@ -14,13 +14,13 @@
             <div class="address">
               <i class="bi bi-geo-alt"></i>
               <h4>Location:</h4>
-              <p>A108 Adam Street, New York, NY 535022</p>
+              <p>Baliwasan, Zamboanga City, Philippines</p>
             </div>
 
             <div class="email">
               <i class="bi bi-envelope"></i>
               <h4>Email:</h4>
-              <p>info@example.com</p>
+              <p>vsltech_company@gmail.com</p>
             </div>
 
             <div class="phone">
