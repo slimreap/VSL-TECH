@@ -71,7 +71,7 @@
     
 
 <div class="row laptops">
-    <div class="col">
+    <div class="col transition transform delay-150 duration-300 translate-y-6">
         <a href="{{route('productform',['id' => $laptop['id']])}}">
             <img class="w-100" src="{{$laptop['img_url']}}" alt="">
         </a>
@@ -89,7 +89,7 @@
 
 @endforeach
 
-<div class="row" id="searchresult">
+<div id="searchresult">
 
 </div>
 
@@ -109,28 +109,40 @@
                 processData: false,
                 contentType: false,
                 success: function(response) {
-                    // for (var i = 0; i < laptops.length; i++) {
-                    // laptops[i].style.display = "none";
-                    // }
-                    // var laptop = `
-                    // <div class="row">
-                    //     <div class="col">
-                    //         <a href="{{route('productform',['id' => $laptop['id']])}}">
-                    //             <img class="w-100" src="{{$laptop['img_url']}}" alt="">
-                    //         </a>
-                    //         <div class="">
-                    //             {{$laptop['brand_name']}}
-                    //         </div>
-                    //         <div class="">
-                    //             {{$laptop['description']}}
-                    //         </div>
-                    //         <div class="">
-                    //             {{$laptop['price']}}
-                    //         </div>
-                    //     </div>
-                    // </div>
-                    // `;       
-                    console.log(response.data[0].brand_name);         
+                    var laptopdata = response.data;
+
+                         
+                    laptopdata.forEach(function(item) {
+                        console.log(item.brand_name); 
+                        var laptops = document.querySelectorAll('.laptops');
+                        for (var i = 0; i < laptops.length; i++) {
+                        laptops[i].style.display = 'none';
+                        }
+                        
+                        var laptopcontainer = `
+                        <div class="row laptops">
+                            <div class="col -translate-y-6 transition transform delay-150 duration-300 translate-y-6">
+                                <a href="/products/laptops/details/${item.id}">
+                                    <img class="w-100" src="${item.img_url}" alt="">
+                                </a>
+                                <div class="">
+                                    ${item.brand_name}
+                                </div>
+                                <div class="">
+                                    ${item.description}
+                                </div>
+                                <div class="">
+                                    ${item.price}
+                                </div>
+                            </div>
+                        </div>
+                        `;
+
+                    $('#searchresult').append(laptopcontainer);
+
+
+
+                    });       
                 },
                 error: function(xhr, status, error) {
                 console.error(error);

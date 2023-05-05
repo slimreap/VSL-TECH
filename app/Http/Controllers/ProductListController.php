@@ -2,12 +2,15 @@
 
 namespace App\Http\Controllers;
 
+use GuzzleHttp\Client;
 use Illuminate\Http\Request;
 use App\Models\PC_components;
+use Ixudra\Curl\Facades\Curl;
 use App\Models\DesktopPackage;
 use App\Models\CustomerDetails;
 use App\Models\LaptopnPheriperals;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
 
 class ProductListController extends Controller
 {
@@ -103,37 +106,79 @@ class ProductListController extends Controller
 
 
     public function confirmcheckout(Request $request){
-        $customername = $request->input('completename');
-        $emailaddress = $request->input('emailaddress');
-        $finalcontactnumber = $request->input('finalcontactnumber');
-        $finaladdress = $request->input('finaladdress');
-        $finalstate = $request->input('finalstate');
-        $productid = $request->input('productid');
+        // $customername = $request->input('completename');
+        // $emailaddress = $request->input('emailaddress');
+        // $finalcontactnumber = $request->input('finalcontactnumber');
+        // $finaladdress = $request->input('finaladdress');
+        // $finalstate = $request->input('finalstate');
+        // $productid = $request->input('productid');
 
-        DB::transaction(function () use ($customername, $emailaddress, $finalcontactnumber, $finaladdress, $finalstate, $productid) {
-            $laptop = LaptopnPheriperals::find($productid);
-            $customerdetails = CustomerDetails::create([
-                'name' => $customername,
-                'email' => $emailaddress,
-                'contact_number' => $finalcontactnumber,
-                'address' => $finaladdress . ' ' . $finalstate,
-            ]);
-            $laptop->transaction()->create(['user_id' => $customerdetails->id]);
-        });
+        $laptop = LaptopnPheriperals::find(1);
+
+  
+            $key = 'sk_test_bKqBeUdFNkBfFV9xLKfBxN97:';
+            $key = base64_encode($key);
+
+            $data['data']['attributes']['amount'] = $laptop->price;
+            $data['data']['attributes']['description'] = $laptop->description;
+            $response = Curl::to('https://api.paymongo.com/v1/links')
+                        ->withHeader('Content-Type: application/json')
+                        ->withHeader('accept: application/json')
+                        ->withHeader('Authorization: Basic '. $key .'')
+                        ->withData($data)
+                        ->asJson()
+                        ->post();
+
+            return redirect($response->data->attributes->checkout_url);
+        // DB::transaction(function () use ($customername, $emailaddress, $finalcontactnumber, $finaladdress, $finalstate, $productid) {
+        //     $laptop = LaptopnPheriperals::find($productid);
+        //     $customerdetails = CustomerDetails::create([
+        //         'name' => $customername,
+        //         'email' => $emailaddress,
+        //         'contact_number' => $finalcontactnumber,
+        //         'address' => $finaladdress . ' ' . $finalstate,
+        //     ]);
+        //     $laptop->transaction()->create(['user_id' => $customerdetails->id]);
+        // });
+
+
         
 
     }
 
 
     public function searchlaptop(Request $request){
+        $laptoparray = [];
         $laptop = $request->input('query');
 
-        $laptop = LaptopnPheriperals::where('prod_name', 'like', "%$laptop%")->get();
+        $laptoparray = LaptopnPheriperals::where('prod_name', 'like', "%$laptop%")->get();
+
+        foreach ($laptoparray as $laptop) {
+            $laptop->img_url = $laptop->getFirstMedia('laptops')->getUrl();
+          }
         // return view('search-results', compact('posts'));
         // dd($laptop);
         return response()->json([
             'success' => true,
-            'data' => $laptop
+            'data' => $laptoparray,
+            // 'laptopimgurl' => $laptopimgurl
+        ]);
+    }
+
+
+    public function listdesktoppackages(){
+        $pcarray = [];
+        $pc = DesktopPackage::all();
+
+        $pcarray = $pc;
+
+        foreach ($pcarray as $pc)
+        {
+            $pc->img_url = $pc->getFirstMedia('desktop')->getUrl();
+        }
+
+        return view('products.desktoppackages',[
+            'listdesktoppackages' => $pcarray
         ]);
     }
 

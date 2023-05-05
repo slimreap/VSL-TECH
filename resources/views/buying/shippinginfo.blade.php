@@ -216,25 +216,19 @@
             </div>
             <div class="row">
                <div class="col"></div>
-               <div class="col">
-<<<<<<< HEAD
-                <!-- <form action="{{route('productcheckout')}}" method="post">
-                    @csrf -->
-                    <input type="text" name="productid" value="{{$laptop['id']}}">
-=======
-                <form action="{{route('confirmcheckout')}}" method="post">
-                    @csrf
-                    <input type="text" name="productid" value="{{$laptopdetails['id']}}">
->>>>>>> 2eab4565e925d539eaec27c546ed6eeef18039a5
-                    <input type="text" id="checkoutfullname" name="completename">
-                    <input type="text" id="checkoutemailaddress" name="emailaddress">
-                    <input type="text" id="checkoutfinalcontactnumber" name="finalcontactnumber">
-                    <input type="text" id="checkoutfinaladdress" name="finaladdress">
-                    <input type="text" id="checkoutfinalstate" name="finalstate">
+               <div class="col hidden">
+                <form action="{{route('confirmcheckout')}}" method="get">
+                    @csrf 
+                    <input type="text" name="productid" hidden value="{{$laptopdetails['id']}}">
+                    <input type="text" id="checkoutfullname" hidden name="completename">
+                    <input type="text" id="checkoutemailaddress" hidden name="emailaddress">
+                    <input type="text" id="checkoutfinalcontactnumber" hidden name="finalcontactnumber">
+                    <input type="text" id="checkoutfinaladdress" hidden name="finaladdress">
+                    <input type="text" id="checkoutfinalstate"hidden  name="finalstate">
                     <button type="submit" class="btn-primary rounded-pill">
                         Checkout
                     </button>
-                <!-- </form> -->
+                </form> 
                </div>
             </div>
         </div>

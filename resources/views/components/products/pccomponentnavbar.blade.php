@@ -66,33 +66,33 @@
 
     </div>
 </div>
-<div class="container-shop">
+{{-- <div class="container-shop">
     <h2>COMPUTER SETS:</h2>
   <nav class="navbar1-columns">
     <ul>
-      <li><a class="nav-link scrollto " href="{{route('productsindividualpccomponent',['component' => 'Chassis Fan'])}}">Chassis Fan</a></li>  
-      <li><a class="nav-link scrollto" href="{{route('productsindividualpccomponent',['component' => 'CPU-Cooling'])}}">CPU Cooling</a></li>
-      <li><a class="nav-link scrollto " href="{{route('productsindividualpccomponent',['component' => 'Graphics Card'])}}">Graphics Card</a></li>
+      <li><a class="nav-link scrollto " href="{{route('productspccomponents',['component' => 'Chassis Fan'])}}">Chassis Fan</a></li>  
+      <li><a class="nav-link scrollto" href="{{route('productspccomponents',['component' => 'CPU-Cooling'])}}">CPU Cooling</a></li>
+      <li><a class="nav-link scrollto " href="{{route('productspccomponents',['component' => 'Graphics Card'])}}">Graphics Card</a></li>
     </ul>
   </nav>
   <nav class="navbar1-columns">
     <ul>
-        <li><a class="nav-link scrollto " href="{{route('productsindividualpccomponent',['component' => 'Hard Disk'])}}">Hard Disk</a></li>  
-        <li><a class="nav-link scrollto" href="{{route('productsindividualpccomponent',['component' => 'Memory'])}}">Memory</a></li>
-        <li><a class="nav-link scrollto " href="{{route('productsindividualpccomponent',['component' => 'Motherboard'])}}">Motherboard</a></li>
+        <li><a class="nav-link scrollto " href="{{route('productspccomponents',['component' => 'Hard Disk'])}}">Hard Disk</a></li>  
+        <li><a class="nav-link scrollto" href="{{route('productspccomponents',['component' => 'Memory'])}}">Memory</a></li>
+        <li><a class="nav-link scrollto " href="{{route('productspccomponents',['component' => 'Motherboard'])}}">Motherboard</a></li>
     </ul>
   </nav>
   <nav class="navbar1-columns">
     <ul>
-        <li><a class="nav-link scrollto " href="{{route('productsindividualpccomponent',['component' => 'PC Case'])}}">PC Case</a></li>  
-        <li><a class="nav-link scrollto" href="{{route('productsindividualpccomponent',['component' => 'Power Supply'])}}">Power Supply</a></li>
+        <li><a class="nav-link scrollto " href="{{route('productspccomponents',['component' => 'PC Case'])}}">PC Case</a></li>  
+        <li><a class="nav-link scrollto" href="{{route('productspccomponents',['component' => 'Power Supply'])}}">Power Supply</a></li>
         <li><a class="nav-link scrollto " href="#nine">Processor</a></li>
     </ul>
   </nav>
   <nav class="navbar1-columns">
     <ul>
-        <li><a class="nav-link scrollto " href="{{route('productsindividualpccomponent',['component' => 'Processor Tray'])}}">Processor Tray</a></li>  
-        <li><a class="nav-link scrollto" href="{{route('productsindividualpccomponent',['component' => 'Solid State Drive'])}}">Solid State Drive</a></li>
+        <li><a class="nav-link scrollto " href="{{route('productspccomponents',['component' => 'Processor Tray'])}}">Processor Tray</a></li>  
+        <li><a class="nav-link scrollto" href="{{route('productspccomponents',['component' => 'Solid State Drive'])}}">Solid State Drive</a></li>
     </ul>
   </nav>
 
@@ -107,4 +107,4 @@
          background-size: 30px 30px; " name="" id="">
     </div>
 </div>
-
+ --}}

@@ -12,7 +12,7 @@
           <a class="nav-link" href="{{route('productslaptops')}}">Laptops</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="{{route('productsdesktoppackages')}}">Desktop Packages</a>
+          <a class="nav-link" href="{{route('listdesktoppackages')}}">Desktop Packages</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="{{route('productspheriperals')}}">Peripherals and Accessories</a>

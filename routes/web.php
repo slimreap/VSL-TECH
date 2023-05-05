@@ -19,25 +19,27 @@ Route::get('/', function () {
     return view('index');
 })->name('home');
 
+
 // route for products
 Route::get('/products',[ProductListController::class, 'productList'])->name('products');
 
-
 // route for laptops
 Route::get('/products/laptops/{brandname?}', [ProductListController::class, 'laptopList'])->name('productslaptops');
+
+// route for laptop checkout
+Route::get('/products/laptops/checkout/confirmcheckout', [ProductListController::class, 'confirmcheckout'])->name('confirmcheckout');
+
 // route for laptop customer form
 Route::get('/products/laptops/checkout/{id?}', [ProductListController::class, 'productcheckout'])->name('productcheckout');
-// route for laptop checkout
-Route::post('/products/laptops/checkout/confirmcheckout', [ProductListController::class, 'confirmcheckout'])->name('confirmcheckout');
 // route for laptop customer checkout
 Route::get('/products/laptops/details/{id?}', [ProductListController::class, 'laptopcustomerform'])->name('productform');
 // route for laptop search
 Route::post('/products/laptops/search', [ProductListController::class, 'searchlaptop'])->name('searchlaptop');
 
+
+
 // route for desktop packages
-Route::get('/products/desktoppackages', function () {
-    return view('products.desktoppackages');
-})->name('productsdesktoppackages');
+Route::get('/products/desktoppackages', [ProductListController::class, 'listdesktoppackages'])->name('listdesktoppackages');
 
 // route for pheriperals
 Route::get('/products/productspheriperals', function () {
