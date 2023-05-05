@@ -2,34 +2,46 @@
  <x-slot name="title">
     Laptops
  </x-slot>
+<style>
+    .card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+  transition: all 0.3s ease-in-out;
+}
 
+.card:hover h5,
+.card:hover p {
+  color: #4F0354;
+}
+
+
+</style>
  {{-- subnavbar --}}
  <div class="container">
     <div class="row">
         <div class="col-12">
             <div class="row">
                 @foreach ($laptops as $laptop)
-                <div class="col-md-3">
+                <div class="col-md-3" style = "margin-top: 20px; margin-bottom: 40px;">
                     <a href="{{route('productform',['id' => $laptop['id']])}}">
-                        <img class="w-100" src="{{$laptop['img_url']}}" alt="">
+                    <div class="card h-100">
+                        
+                            <div class="aspect-ratio-container aspect-ratio-1-1 align-items-center">
+                                <img class="aspect-ratio-object img-fluid" style = "margin-top: 20px;"src="{{$laptop['img_url']}}" alt="">
+                            </div>
+                        
+                        <div class="card-body d-flex flex-column justify-content-center align-items-center">
+                            <h5 class="card-title text-center" style="font-weight: bold; margin-top: 10px">{{$laptop['prod_name']}}</h5>
+                            <p class="card-text text-center" style="margin-bottom: 0px;">₱{{$laptop['price']}}</p>
+                        </div>
+                    </div>
                     </a>
-                    <div class="">
-                        {{$laptop['brand_name']}}
-                    </div>
-                    <div class="">
-                        {{$laptop['description']}}
-                    </div>
-                    <div class="">
-                        {{$laptop['price']}}
-                    </div>
                 </div>
                 @endforeach
             </div>
         </div>
     </div>
 </div>
-
-
 
 <div id="searchresult">
 
@@ -109,5 +121,7 @@
             }
         });
    };
+
+
 </script>
 </x-productslayout>

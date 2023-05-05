@@ -10,8 +10,9 @@
           
         </div>
         <div class="col-lg-6 order-1 order-lg-2 hero-img">
-          <img src="{{asset('storage/E-commerce/16539630104482651.jpg')}}" class="img-fluid animated" style="width: 100%; height: 80%;" alt="">
+          <img src="{{asset('storage/E-commerce/16539630104482651.jpg')}}" class="img-fluid animated rounded" style="width: 100%; height: 80%;" alt="">
         </div>
+        
       </div>
     </div>
 

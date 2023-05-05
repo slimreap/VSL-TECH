@@ -78,7 +78,7 @@ class ProductListController extends Controller
                 'created_at'=>$desktopPackage->created_at,
                 'updated_at'=>$desktopPackage->updated_at,
             ];
-        }
+        } 
         return view('products.desktoppackages',[
             'desktoppackages'=>$desktopPackageArray,
         ]);

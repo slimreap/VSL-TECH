@@ -25,7 +25,8 @@ Route::get('/products',[ProductListController::class, 'productList'])->name('pro
 
 // route for laptops
 Route::get('/products/laptops/{brandname?}', [ProductListController::class, 'laptopList'])->name('productslaptops');
-
+// route for peripherals and accessories
+Route::get('products/peripherals_and_accessories/{brandname?}', [ProductListController::class, 'laptopList'])->name('producsPeripheralsNaccessories');
 // route for laptop checkout
 Route::get('/products/laptops/checkout/confirmcheckout', [ProductListController::class, 'confirmcheckout'])->name('confirmcheckout');
 

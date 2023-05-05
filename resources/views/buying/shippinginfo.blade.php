@@ -3,6 +3,14 @@
     <x-slot name="title">
         Shipping info
     </x-slot>
+    <style>
+        .btn-primary.rounded-pill:hover {
+            background-color: #4F0354;
+            color: white;
+            transition: all 0.2s ease-in-out;
+            transform: scale(1.1);
+        }
+    </style>
 
 <div class="container w-50 text-center position-relative">
     <div class="row">
@@ -19,64 +27,65 @@
 
 
     <div class="row text-center">
-        <p class="fs-3 p-auto">Shipping address</p>
+        <h1 class="fs-3 p-auto" style = "font-weight: bold; margin-bottom: 30px;">Shipping Address</h1>
     </div>
     
-    <div class="row" id="shippingaddresscontainer">
-        <div class="col">
-            <div class="row g-3">
-                <input type="text" class="form-control" name="firstname" id="inputfn" placeholder="First name" id="">
-            </div>
-            <div class="row g-3">
-                <input type="text" class="form-control" name="lastname" id="lastname" placeholder="Last Name" id="">
+    <div class="card">
+        <div class="card-body">
+            <form>
+                <div class="row mb-3">
+                    <div class="col-sm-4 mb-3">
+                        <input type="text" class="form-control" name="firstname" id="inputfn" placeholder="First name">
+                    </div>
+                    <div class="col-sm-4 mb-3">
+                        <input type="text" class="form-control" name="lastname" id="lastname" placeholder="Last Name">
+                    </div>
+                    <div class="col-sm-4 mb-3">
+                        <input type="text" class="form-control" name="middleinitial" id="middileinitial" placeholder="M.I">
+                    </div>
                 </div>
-            <div class="row g-3">
-                <input type="text" class="form-control" name="address" id="inputaddress" placeholder="Adress" id="">
-            </div>
-            <div class="row g-3">
-                <input type="text" class="form-control" name="barangay" id="inputbrngy" placeholder="Baranggay" id="">
     
-            </div>
-            <div class="row g-3">
-                <input type="text" class="form-control" name="state" id="inputstate" placeholder="State" id="">
-            </div>
-            <div class="row g-3">
-                <input type="text" class="form-control" name="postalcode" id="inputpostalcode" placeholder="Postal Code" id="">
-            </div>
-            <div class="row g-3">
-                <input type="text" class="form-control" name="email" id="inputemail" placeholder="Email" id="">
-            </div>
-
-        </div>
-
-
-        <div class="col">
-
-            <div class="row g-3">
-            <input type="text" class="form-control" name="contactnumber" id="inputcontactnumber" placeholder="Contact number" id="">
-            </div>
-            <div class="row g-3">
-            <input type="text" class="form-control" name="city" id="inputcity" placeholder="City" id="">
-            </div>
-
-        </div>
-    </div>
-
-
-    <div class="row">
-        <div class="row">
-           
-            <!-- Button trigger modal -->
-<button type="button" class="btn btn-primary" style = "background: #4F0354;" id="confirmshippingaddress" data-bs-toggle="modal" data-bs-target="#exampleModal">
-    Confirm
-  </button>
-            
-        </div>
-    </form>
-        <div class="row">
-            <button class="btn-light rounded-pill">Cancel</button>
+                <div class="form-group mb-3">
+                    <input type="text" class="form-control" name="email" id="inputemail" placeholder="Email" id="">
+                </div>
+    
+                <div class="form-group mb-3">
+                    <input type="text" class="form-control" name="contactnumber" id="inputcontactnumber" placeholder="Contact number" id="">
+                </div>
+    
+                <div class="form-group mb-3">
+                    <input type="text" class="form-control" name="address" id="inputaddress" placeholder="Address">
+                </div>
+    
+                <div class="form-inline">
+                    <div class="form-group mb-3 mr-3">
+                        <input type="text" class="form-control" name="state" id="inputstate" placeholder="State">
+                    </div>
+                    <div class="form-group mb-3 mr-3">
+                        <input type="text" class="form-control" name="city" id="inputcity" placeholder="City">
+                    </div>
+                    <div class=" col-sm-4" style="margin-bottom: 10px;">
+                        <input type="text" class="form-control" name="postalcode" id="inputpostalcode" placeholder="Postal Code">
+                    </div>
+                </div>
+    
+                <!--Buttons-->
+                <div class="row">
+                    <div class="row">
+                        <!-- Button trigger modal -->
+                        <button type="button" class="btn rounded-pill text-white" style = "background: #4F0354;" id="confirmshippingaddress" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                            Confirm
+                        </button>
+                    </div>
+                    <div class="row">
+                        <button class="btn-light rounded-pill">Cancel</button>
+                    </div>
+                </div>
+            </form>
         </div>
     </div>
+    
+    
 
 
     {{-- MODALS --}}
@@ -86,15 +95,15 @@
   <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
       <div class="modal-content">
-        <div class="modal-header" style>
+        <div class="modal-header" style="background: #4F0354; color: white;">
           <h1 class="modal-title fs-5" id="exampleModalLabel">Customer Details summary</h1>
-          <button type="button" class="btn-close light" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
             <div class="row">
                 <div class="col">
                     <div class="row"><p class="fs-4">First Name</p></div>
-                    <div class="row"><p class="fs-4">Lasyt Name</p></div>
+                    <div class="row"><p class="fs-4">Last Name</p></div>
+                    <div class="row"><p class="fs-4">Middle Initial</p></div>
                     <div class="row"><p class="fs-4">Email Address</p></div>
                     <div class="row"><p class="fs-4">Contact Number</p></div>
                     <div class="row"><p class="fs-4">Address</p></div>
@@ -104,24 +113,20 @@
                     <div class="row"><p class="fs-4">Postal Code</p></div>
                 </div>
                 <div class="col" id="confirmshippingcontainer">
-                    {{-- <div class="row"><p class="fs-4" id="customername"></p></div>
-                    <div class="row"><p class="fs-4" id="emailaddress"></p></div>
-                    <div class="row"><p class="fs-4" id="contactnumber"></p></div>
-                    <div class="row"><p class="fs-4" id="address"></p></div>
-                    <div class="row"><p class="fs-4" id="barangay"></p></div>
-                    <div class="row"><p class="fs-4" id="city"></p></div>
-                    <div class="row"><p class="fs-4" id="postalcode"></p></div> --}}
                     <div class="row mb-2">
                         <input type="text" class="form-control" name="firstname" id="confirmfn" placeholder="First name" id="" readonly>
                     </div>
                     <div class="row mb-2">
-                        <input type="text" class="form-control" name="lastname" id="confirmln" placeholder="last name" id="" readonly>
+                        <input type="text" class="form-control" name="lastname" id="confirmln" placeholder="Last name" id="" readonly>
+                    </div>
+                    <div class="row mb-2">
+                        <input type="text" class="form-control" name="middileinitial" id="confirmln" placeholder="Middle initial" id="" readonly>
                     </div>
                     <div class="row g-3 mb-2">
                         <input type="text" class="form-control" name="address" id="confirmaddress" placeholder="Adress" id="" readonly>
                     </div>
                     <div class="row g-3 mb-2">
-                        <input type="text" class="form-control" name="barangay" id="confirmbrngy" placeholder="Baranggay" id="" readonly>
+                        <input type="text" class="form-control" name="barangay" id="confirmbrngy" placeholder="Barangay" id="" readonly>
             
                     </div>
                     <div class="row g-2 mb-2 mt-1">
@@ -145,8 +150,8 @@
             </div>
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-          <button id="confirmdetails" type="button" class="btn btn-primary" style="#4F0354;" data-bs-toggle="modal" data-bs-target="#exampleModal2">Save changes</button>
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+          <button id="confirmdetails" type="button" class="btn btn-primary" style="background: #4F0354;" data-bs-toggle="modal" data-bs-target="#exampleModal2">Save changes</button>
         </div>
       </div>
     </div>
@@ -158,36 +163,40 @@
   <div class="modal fade" id="exampleModal2" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-scrollable">
       <div class="modal-content">
-        <div class="modal-header">
-          <h1 class="modal-title fs-5" id="exampleModalLabel2">Customer Details SHOY</h1>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        <div class="modal-header" style = "background: #4F0354; color: white; font-weight: bold;">
+          <h1 class="modal-title fs-5" id="exampleModalLabel2">Customer Details</h1>
         </div>
         <div class="modal-body">
             <div class="row">
-               <p>Order Summary</p>
+               <h3 style="font-weight: bold; margin-bottom: 10px;">Order Summary</h3>
                <div class="row">
-                    <div class="col">
-                        <img src="{{$laptopdetails['img_url']}}" class="img-thumbnail h-100 w-100" alt="">
+                <div class="col-md-6">
+                    <img src="{{$laptopdetails['img_url']}}" class="img-thumbnail h-100 w-100" alt="">
+                </div>
+                <div class="col-md-6">
+                    <div class="row">
+                        <div class="col-6">Name of Product:</div>
+                        <div class="col-6">{{$laptopdetails['brand_name']}}</div>
                     </div>
-                    <div class="col">
-                        <div class="row">
-                            name of prod: {{$laptopdetails['brand_name']}}
-                        </div>
-                        <div class="row">
-                            Quantity:
-                        </div>
-                        <div class="row">
-                            Price: {{$laptopdetails['price']}}
-                        </div>
-                        <div class="row">
-                            Discount:
-                        </div>
-                        <div class="row">
-                            Total: {{$laptopdetails['price']}}
-                        </div>
+                    <div class="row">
+                        <div class="col-6">Quantity:</div>
+                        <div class="col-6"><!--Quantity value goes here--></div>
                     </div>
-               </div>
+                    <div class="row">
+                        <div class="col-6">Price:</div>
+                        <div class="col-6">{{$laptopdetails['price']}}</div>
+                    </div>
+                    <div class="row">
+                        <div class="col-6">Discount:</div>
+                        <div class="col-6"><!--Discount value goes here--></div>
+                    </div>
+                    <div class="row">
+                        <div class="col-6">Total:</div>
+                        <div class="col-6">{{$laptopdetails['price']}}</div>
+                    </div>
+                </div>
             </div>
+            
 
 
             <div class="row">
@@ -209,12 +218,12 @@
                             <img src="" alt="">
                         </div>
                         <div class="row">
-                            <p>Payment Method: Cash on Delivery</p>
+                            <p style="font-weight: bold;">Payment Method: <span style="color: #4F0354">Cash on Delivery</span></p>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="row">
+            <div class="row" style="margin-botom: 10px;">
                <div class="col"></div>
                <div class="col hidden">
                 <form action="{{route('confirmcheckout')}}" method="get">
@@ -228,7 +237,7 @@
                     <button type="submit" class="btn-primary rounded-pill">
                         Checkout
                     </button>
-                </form> 
+                </form>
                </div>
             </div>
         </div>

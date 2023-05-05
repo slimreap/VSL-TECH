@@ -3,6 +3,18 @@
         Product View
     </x-slot>
 
+    <style>
+      .btn:hover {
+        animation-name: color-change;
+        animation-duration: 0.5s;
+        animation-fill-mode: forwards;
+      }
+    
+      @keyframes color-change {
+        from { background-color: #4F0354; }
+        to { background-color: lightgray; }
+      }
+    </style>
     <div class="container">
       <div class="row">
         <div class="col-md-6">
@@ -32,6 +44,7 @@
                                     <div class="card-body">
                                       <div class="row">
                                         <div class="col-sm-5">
+                                          
                                           <h5 style="font-size: 14px;">Price</h5>
                                           <p style="font-size: 14px;">$49.99</p>
                                         </div>
@@ -46,7 +59,7 @@
                                   </div>
                                 </form>
                               </div>
-                    </div>
+                  </div>
                 </div>
               </div>
           </div>
@@ -56,23 +69,21 @@
               <div class='col-12'>
                 <!-- content for top row goes here -->
                 <div class="col-xl-6 col-lg-12 col-md-12 product_detail_side detail_style1">
-                  <div class="product-heading">
-                    <h2>{{$laptopdetails['brand_name']}}</h2>
-
-                    <div class="product-detail-side"> <span><del>15</del></span><span class="new-price">{{$laptopdetails['price']}}</span> <span class="rating"> <i class="fa fa-star" aria-hidden="true"></i> <i class="fa fa-star" aria-hidden="true"></i> <i class="fa fa-star" aria-hidden="true"></i> <i class="fa fa-star" aria-hidden="true"></i> <i class="fa fa-star-o" aria-hidden="true"></i> </span> <span class="review">(5 customer review)</span> </div>
+                  <div class="product-heading" style="margin-top: 50px;">
+                    <h2 style="font-weight: bold;">{{$laptopdetails['brand_name']}}</h2>
+                    <span class="stock" style="font-size: 14px;">--2 in stock--</span>
+                    <div class="product-detail-side" style = "margin-bottom: 20px;"><span class="new-price" style="font-weight: bold; margin-bottom: 50px;">₱{{$laptopdetails['price']}}</span> <span class="rating"> <i class="fa fa-star" aria-hidden="true"></i> <i class="fa fa-star" aria-hidden="true"></i> <i class="fa fa-star" aria-hidden="true"></i> <i class="fa fa-star" aria-hidden="true"></i> <i class="fa fa-star-o" aria-hidden="true"></i> </span></div>
                   </div>
                 </div>
               </div>
             </div>
           <!-- content for right side of grid goes here -->
-          <div class="detail-content">
-                  <p>{{$laptopdetails['description']}}<br>
-                    <span class="stock">2 in stock</span> </p>
+            <div class="detail-content">
+                    <p style="text-align: justify; font-size: 14px;">{{$laptopdetails['description']}}</p>
                     <a class="nav-link scrollto" href="{{route('productcheckout',['id'=> $laptopdetails['id']])}}">
-                      <button class="btn btn-primary rounded-pill btn-lg" style="width: 300px; margin-left: 30%; background: #4F0354; color: white;">Buy Now!</button>
+                      <button class="btn rounded-pill btn-lg" style="width: 300px; margin-left: 30%; background: #4F0354; color: white; 
+                        transition: background-color 0.5s ease-in-out;">Buy Now!</button>
                     </a>
-
-
             </div>
         </div>
       </div>

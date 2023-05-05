@@ -3,6 +3,38 @@
         Pheriperals and accessories
      </x-slot>
 
+
+     {{-- product peripherals display --}}
+     <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <div class="row">
+                    @foreach ($laptops as $peripheralsNaccessories)
+                    <div class="col-md-3">
+                        <a href="{{route('productform',['id' => $peripheralsNaccessories['id']])}}">
+                            <img class="w-100" src="{{$peripheralsNaccessories['img_url']}}" alt="">
+                        </a>
+                        <div class="">
+                            {{$peripheralsNaccessories['brand_name']}}
+                        </div>
+                        <div class="">
+                            {{$peripheralsNaccessories['description']}}
+                        </div>
+                        <div class="">
+                            {{$peripheralsNaccessories['price']}}
+                        </div>
+                    </div>
+                    @endforeach
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+
           {{-- subnavbar --}}
 
         <div class="col">
@@ -18,35 +50,6 @@
 
 
         </div>
-
-
-    </div>
-</div>
-
-
-
-<h3 class="fs-2">Cables</h3>
-
-<div class="row">
-    <div class="col">
-        <a href="">
-            <img class="w-100" src="{{asset('storage/E-commerce/1920-x-700-Intel-13th-gen-D21T.png')}}" alt="">
-        </a>
-    </div>
-    <div class="col">
-        <a href="">
-            <img class="w-100" src="{{asset('storage/E-commerce/1920-x-700-Intel-13th-gen-D21T.png')}}" alt="">
-        </a>
-    </div>
-    <div class="col">
-        <a href="">
-            <img class="w-100" src="{{asset('storage/E-commerce/1920-x-700-Intel-13th-gen-D21T.png')}}" alt="">
-        </a>
-    </div>
-    <div class="col">
-        <a href="">
-            <img class="w-100" src="{{asset('storage/E-commerce/1920-x-700-Intel-13th-gen-D21T.png')}}" alt="">
-        </a>
     </div>
 </div>
 </x-productslayout>
