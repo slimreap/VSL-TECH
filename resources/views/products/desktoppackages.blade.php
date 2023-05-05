@@ -15,7 +15,7 @@
             <div class="row">
                 @foreach ($desktoppackages as $desktopPackage)
                 <div class="col-md-3">
-                    <a href="{{route('productform', ['id' => $desktopPackage['id']])}}">
+                    <a href="{{route('productform', ['category' => 'desktoppackages', 'id' => $desktopPackage['id']])}}">
                         <img class="w-100" src="{{$desktopPackage['img_url']}}" alt="">
                     </a>
                     <div class="">

@@ -26,13 +26,13 @@ Route::get('/products',[ProductListController::class, 'productList'])->name('pro
 // route for laptops
 Route::get('/products/laptops/{brandname?}', [ProductListController::class, 'laptopList'])->name('productslaptops');
 
-// route for laptop checkout
-Route::get('/products/laptops/checkout/confirmcheckout', [ProductListController::class, 'confirmcheckout'])->name('confirmcheckout');
+// route for checkout
+Route::get('/products/checkout/confirmcheckout', [ProductListController::class, 'confirmcheckout'])->name('confirmcheckout');
 
-// route for laptop customer form
-Route::get('/products/laptops/checkout/{id?}', [ProductListController::class, 'productcheckout'])->name('productcheckout');
+// route for customer form
+Route::get('/products/checkout/{category?}/{id?}', [ProductListController::class, 'productcheckout'])->name('productcheckout');
 // route for laptop customer checkout
-Route::get('/products/laptops/details/{id?}', [ProductListController::class, 'laptopcustomerform'])->name('productform');
+Route::get('/products/details/{category?}/{id?}', [ProductListController::class, 'laptopcustomerform'])->name('productform');
 // route for laptop search
 Route::post('/products/laptops/search', [ProductListController::class, 'searchlaptop'])->name('searchlaptop');
 

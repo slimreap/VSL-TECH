@@ -85,42 +85,76 @@ class ProductListController extends Controller
     }
 
 
-    public function laptopcustomerform($id  = ""){
-        $laptoparray = [];
-        $laptop = LaptopnPheriperals::find($id);
+    public function laptopcustomerform($category = "", $id  = ""){
+        $productarray = [];
+
+
+        if ($category == 'laptop' || $category == 'pheriperalsandaccessories')
+        {
+            $product = LaptopnPheriperals::find($id);
+            $productarray = [
+                'brand_name' => $product->brand_name,
+                'description' =>$product->description,
+                'price' =>$product->price,
+                'img_url' =>$product->getFirstMedia('laptops')->getUrl(),
+                'id' =>$product->id,
+            ];
+        }
+        elseif($category == 'desktoppackages')
+        {
+            $product = DesktopPackage::find($id);
+            $productarray = [
+                'brand_name' => $product->set_name,
+                'description' =>$product->description,
+                'price' =>$product->price,
+                'img_url' =>$product->getFirstMedia('desktop')->getUrl(),
+                'id' =>$product->id,
+            ];
+        }
+
+        
         // dd($laptop);
 
-            $laptoparray = [
-                'brand_name' => $laptop->brand_name,
-                'description' =>$laptop->description,
-                'price' =>$laptop->price,
-                'img_url' =>$laptop->getFirstMedia('laptops')->getUrl(),
-                'id' =>$laptop->id,
-            ];
+
         
         return view('products.productview', [
-            'laptopdetails' => $laptoparray
+            'productdetails' => $productarray,
+            'category' => $category
         ]);
     }
 
 
-    public function productcheckout($id = ""){
-        $laptoparray = [];
-        $laptop = LaptopnPheriperals::find($id);
-        // dd($laptop);
+    public function productcheckout($category = "",$id = ""){
+        $productarray = [];
 
-            $laptoparray = [
-                'brand_name' => $laptop->brand_name,
-                'description' =>$laptop->description,
-                'price' =>$laptop->price,
-                'img_url' =>$laptop->getFirstMedia('laptops')->getUrl(),
-                'id' =>$laptop->id,
+
+        if ($category == 'laptop' || $category == 'pheriperalsandaccessories')
+        {
+            $product = LaptopnPheriperals::find($id);
+            $productarray = [
+                'brand_name' => $product->brand_name,
+                'description' =>$product->description,
+                'price' =>$product->price,
+                'img_url' =>$product->getFirstMedia('laptops')->getUrl(),
+                'id' =>$product->id,
             ];
+        }
+        elseif($category == 'desktoppackages')
+        {
+            $product = DesktopPackage::find($id);
+            $productarray = [
+                'brand_name' => $product->set_name,
+                'description' =>$product->description,
+                'price' =>$product->price,
+                'img_url' =>$product->getFirstMedia('desktop')->getUrl(),
+                'id' =>$product->id,
+            ];
+        }
 
             // dd($laptoparray);
         return view('buying.shippinginfo',[
             'id' => $id,
-            'laptopdetails' => $laptoparray
+            'productdetails' => $productarray
         ]);
     }
 
@@ -202,5 +236,6 @@ class ProductListController extends Controller
         ]);
     }
 
-    
+
+
 }

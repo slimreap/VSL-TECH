@@ -10,7 +10,7 @@
             <div class="row">
                 @foreach ($laptops as $laptop)
                 <div class="col-md-3">
-                    <a href="{{route('productform',['id' => $laptop['id']])}}">
+                    <a href="{{route('productform',['category' => 'laptop', 'id' => $laptop['id']])}}">
                         <img class="w-100" src="{{$laptop['img_url']}}" alt="">
                     </a>
                     <div class="">

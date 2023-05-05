@@ -15,7 +15,7 @@
             <div class='row'>
               <div class='col-12'>
                 <div class='product_view-img1'>
-                  <img src="{{$laptopdetails['img_url']}}" alt="#" class="img-fluid">
+                  <img src="{{$productdetails['img_url']}}" alt="#" class="img-fluid">
                 </div>
               </div>
             </div>
@@ -57,18 +57,18 @@
                 <!-- content for top row goes here -->
                 <div class="col-xl-6 col-lg-12 col-md-12 product_detail_side detail_style1">
                   <div class="product-heading">
-                    <h2>{{$laptopdetails['brand_name']}}</h2>
+                    <h2>{{$productdetails['brand_name']}}</h2>
 
-                    <div class="product-detail-side"> <span><del>15</del></span><span class="new-price">{{$laptopdetails['price']}}</span> <span class="rating"> <i class="fa fa-star" aria-hidden="true"></i> <i class="fa fa-star" aria-hidden="true"></i> <i class="fa fa-star" aria-hidden="true"></i> <i class="fa fa-star" aria-hidden="true"></i> <i class="fa fa-star-o" aria-hidden="true"></i> </span> <span class="review">(5 customer review)</span> </div>
+                    <div class="product-detail-side"> <span><del>15</del></span><span class="new-price">{{$productdetails['price']}}</span> <span class="rating"> <i class="fa fa-star" aria-hidden="true"></i> <i class="fa fa-star" aria-hidden="true"></i> <i class="fa fa-star" aria-hidden="true"></i> <i class="fa fa-star" aria-hidden="true"></i> <i class="fa fa-star-o" aria-hidden="true"></i> </span> <span class="review">(5 customer review)</span> </div>
                   </div>
                 </div>
               </div>
             </div>
           <!-- content for right side of grid goes here -->
           <div class="detail-content">
-                  <p>{{$laptopdetails['description']}}<br>
+                  <p>{{$productdetails['description']}}<br>
                     <span class="stock">2 in stock</span> </p>
-                    <a class="nav-link scrollto" href="{{route('productcheckout',['id'=> $laptopdetails['id']])}}">
+                    <a class="nav-link scrollto" href="{{route('productcheckout',['category' => $category,'id'=> $productdetails['id']])}}">
                       <button class="btn btn-primary rounded-pill btn-lg" style="width: 300px; margin-left: 30%; background: #4F0354; color: white;">Buy Now!</button>
                     </a>
 
