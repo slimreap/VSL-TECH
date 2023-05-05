@@ -170,17 +170,25 @@
             <div class="row">
                <h3 style="font-weight: bold; margin-bottom: 10px;">Order Summary</h3>
                <div class="row">
-                <div class="col-md-6">
-                    <img src="{{$laptopdetails['img_url']}}" class="img-thumbnail h-100 w-100" alt="">
-                </div>
-                <div class="col-md-6">
-                    <div class="row">
-                        <div class="col-6">Name of Product:</div>
-                        <div class="col-6">{{$laptopdetails['brand_name']}}</div>
+                    <div class="col">
+                        <img src="{{$productdetails['img_url']}}" class="img-thumbnail h-100 w-100" alt="">
                     </div>
-                    <div class="row">
-                        <div class="col-6">Quantity:</div>
-                        <div class="col-6"><!--Quantity value goes here--></div>
+                    <div class="col">
+                        <div class="row">
+                            name of prod: {{$productdetails['brand_name']}}
+                        </div>
+                        <div class="row">
+                            Quantity:
+                        </div>
+                        <div class="row">
+                            Price: {{$productdetails['price']}}
+                        </div>
+                        <div class="row">
+                            Discount:
+                        </div>
+                        <div class="row">
+                            Total: {{$productdetails['price']}}
+                        </div>
                     </div>
                     <div class="row">
                         <div class="col-6">Price:</div>
@@ -228,7 +236,7 @@
                <div class="col hidden">
                 <form action="{{route('confirmcheckout')}}" method="get">
                     @csrf 
-                    <input type="text" name="productid" hidden value="{{$laptopdetails['id']}}">
+                    <input type="text" name="productid" hidden value="{{$productdetails['id']}}">
                     <input type="text" id="checkoutfullname" hidden name="completename">
                     <input type="text" id="checkoutemailaddress" hidden name="emailaddress">
                     <input type="text" id="checkoutfinalcontactnumber" hidden name="finalcontactnumber">

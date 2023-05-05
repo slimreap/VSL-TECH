@@ -22,19 +22,9 @@
         <div class="col-12">
             <div class="row">
                 @foreach ($laptops as $laptop)
-                <div class="col-md-3" style = "margin-top: 20px; margin-bottom: 40px;">
-                    <a href="{{route('productform',['id' => $laptop['id']])}}">
-                    <div class="card h-100">
-                        
-                            <div class="aspect-ratio-container aspect-ratio-1-1 align-items-center">
-                                <img class="aspect-ratio-object img-fluid" style = "margin-top: 20px;"src="{{$laptop['img_url']}}" alt="">
-                            </div>
-                        
-                        <div class="card-body d-flex flex-column justify-content-center align-items-center">
-                            <h5 class="card-title text-center" style="font-weight: bold; margin-top: 10px">{{$laptop['prod_name']}}</h5>
-                            <p class="card-text text-center" style="margin-bottom: 0px;">₱{{$laptop['price']}}</p>
-                        </div>
-                    </div>
+                <div class="col-md-3">
+                    <a href="{{route('productform',['category' => 'laptop', 'id' => $laptop['id']])}}">
+                        <img class="w-100" src="{{$laptop['img_url']}}" alt="">
                     </a>
                 </div>
                 @endforeach
