@@ -50,10 +50,10 @@
         </a>
 
         <ul class="dropdown-menu hide" aria-labelledby="DeskstopPackagesDropdown">
-          <li><a class="dropdown-item" href="">Cables</a></li>
-          <li><a class="dropdown-item" href="">Earphone</a></li>
-          <li><a class="dropdown-item" href="">Mouse Pad</a></li>
-          <li><a class="dropdown-item" href="">Power Bank</a></li>
+          <li><a class="dropdown-item" href="{{route('producsPeripheralsNaccessories', ['brandname'=>'Cables'])}}">Cables</a></li>
+          <li><a class="dropdown-item" href="{{route('producsPeripheralsNaccessories', ['brandname'=>'Earphone'])}}">Earphone</a></li>
+          <li><a class="dropdown-item" href="{{route('producsPeripheralsNaccessories', ['brandname'=>'Mouse Pad'])}}">Mouse Pad</a></li>
+          <li><a class="dropdown-item" href="{{route('producsPeripheralsNaccessories', ['brandname'=>'Power Bank'])}}">Power Bank</a></li>
         </ul>
       </div>
 

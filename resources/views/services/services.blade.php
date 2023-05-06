@@ -24,7 +24,7 @@
     </div>
 </div> --}}
 
-<div class="section-title" style="padding-top: 200px;">
+<div class="section-title">
        
     <h2>IT SERVICES</h2>
 </div>

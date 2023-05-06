@@ -3,6 +3,18 @@
         Product View
     </x-slot>
 
+    <style>
+      .btn:hover {
+        animation-name: color-change;
+        animation-duration: 0.5s;
+        animation-fill-mode: forwards;
+      }
+    
+      @keyframes color-change {
+        from { background-color: #4F0354; }
+        to { background-color: lightgray; }
+      }
+    </style>
     <div class="container">
       <div class="row">
         <div class="col-md-6">
@@ -32,6 +44,7 @@
                                     <div class="card-body">
                                       <div class="row">
                                         <div class="col-sm-5">
+                                          
                                           <h5 style="font-size: 14px;">Price</h5>
                                           <p style="font-size: 14px;">$49.99</p>
                                         </div>
@@ -46,7 +59,7 @@
                                   </div>
                                 </form>
                               </div>
-                    </div>
+                  </div>
                 </div>
               </div>
           </div>
@@ -71,8 +84,6 @@
                     <a class="nav-link scrollto" href="{{route('productcheckout',['category' => $category,'id'=> $productdetails['id']])}}">
                       <button class="btn btn-primary rounded-pill btn-lg" style="width: 300px; margin-left: 30%; background: #4F0354; color: white;">Buy Now!</button>
                     </a>
-
-
             </div>
         </div>
       </div>

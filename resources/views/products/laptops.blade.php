@@ -2,7 +2,20 @@
  <x-slot name="title">
     Laptops
  </x-slot>
+<style>
+    .card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+  transition: all 0.3s ease-in-out;
+}
 
+.card:hover h5,
+.card:hover p {
+  color: #4F0354;
+}
+
+
+</style>
  {{-- subnavbar --}}
  <div class="container">
     <div class="row">
@@ -13,23 +26,12 @@
                     <a href="{{route('productform',['category' => 'laptop', 'id' => $laptop['id']])}}">
                         <img class="w-100" src="{{$laptop['img_url']}}" alt="">
                     </a>
-                    <div class="">
-                        {{$laptop['brand_name']}}
-                    </div>
-                    <div class="">
-                        {{$laptop['description']}}
-                    </div>
-                    <div class="">
-                        {{$laptop['price']}}
-                    </div>
                 </div>
                 @endforeach
             </div>
         </div>
     </div>
 </div>
-
-
 
 <div id="searchresult">
 
@@ -109,5 +111,7 @@
             }
         });
    };
+
+
 </script>
 </x-productslayout>
