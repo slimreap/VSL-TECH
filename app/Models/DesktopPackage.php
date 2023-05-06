@@ -13,12 +13,18 @@ class DesktopPackage extends Model implements HasMedia
     use HasFactory;
 
     protected $fillable = [
-        'set_name',
+        'name',
         'price',
     ];
     public function transaction()
     {
         return $this->morphMany(CustomerTransaction::class, 'transactionable');
     }
+
+    public function stock()
+    {
+        return $this->morphOne(Stock::class, 'stockable');
+    }
+
 
 }

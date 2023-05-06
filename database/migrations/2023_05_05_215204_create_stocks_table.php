@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreatePCComponentsTable extends Migration
+class CreateStocksTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,12 @@ class CreatePCComponentsTable extends Migration
      */
     public function up()
     {
-        Schema::create('pc_components', function (Blueprint $table) {
+        Schema::create('stocks', function (Blueprint $table) {
             $table->id();
-            $table->string('component')->nullable();
-            $table->string('name')->nullable();
-            $table->string('product_model')->nullable();
-            $table->longText('description')->nullable();
-            $table->double('price')->nullable();
+            $table->unsignedBigInteger('stockable_id');
+            $table->string('stockable_type');
+            $table->string('category')->nullable();
+            $table->integer('stock')->nullable();
             $table->timestamps();
         });
     }
@@ -31,6 +30,6 @@ class CreatePCComponentsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('p_c_components');
+        Schema::dropIfExists('stocks');
     }
 }

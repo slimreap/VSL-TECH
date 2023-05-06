@@ -8,6 +8,7 @@ use Filament\Resources\Form;
 use App\Models\PC_components;
 use Filament\Resources\Table;
 use Filament\Resources\Resource;
+use Filament\Forms\Components\Fieldset;
 use Filament\Forms\Components\Textarea;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Forms\Components\TextInput;
@@ -29,8 +30,14 @@ class ComponentsResource extends Resource
         return $form
             ->schema([
                 TextInput::make('component'),
-                TextInput::make('brand_name'),
+                TextInput::make('name'),
                 TextInput::make('product_model'),
+                Fieldset::make('stock')
+                ->relationship('stock')
+                ->schema([
+                TextInput::make('stock')->label("")->default(0),
+                TextInput::make('category')->label("")->default('PC Components')
+                ]),
                 SpatieMediaLibraryFileUpload::make('PC_component')->collection('PC_Components'),
                 Textarea::make('description'),
                 TextInput::make('price'),
@@ -44,7 +51,7 @@ class ComponentsResource extends Resource
         return $table
             ->columns([
                 TextColumn::make('component'),
-                TextColumn::make('brand_name'),
+                TextColumn::make('name'),
                 TextColumn::make('product_model'),
                 TextColumn::make('description'),
                 TextColumn::make('price'),

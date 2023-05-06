@@ -42,13 +42,13 @@ class ProductListController extends Controller
         
         $laptoparray = [];
 
-        ($brandname) ? $laptops = LaptopnPheriperals::where('brand_name',$brandname)->get() : $laptops = LaptopnPheriperals::all();
+        ($brandname) ? $laptops = LaptopnPheriperals::where('name',$brandname)->get() : $laptops = LaptopnPheriperals::all();
         
         foreach ($laptops as $laptop) {
 
             $laptoparray[] = [
                 'id' => $laptop->id,
-                'brand_name' => $laptop->brand_name,
+                'brand_name' => $laptop->name,
                 'prod_name' => $laptop->prod_name,
                 'description' => $laptop->description,
                 'price' => $laptop->price,
@@ -68,12 +68,12 @@ class ProductListController extends Controller
     public function desktopPackagesList($setname =""){
         $desktopPackageArray = [];
 
-        ($setname) ? $desktopPackages = DesktopPackage::where('set_name', $setname)->get():$desktopPackages = DesktopPackage::all();
+        ($setname) ? $desktopPackages = DesktopPackage::where('name', $setname)->get():$desktopPackages = DesktopPackage::all();
     foreach($desktopPackages as $desktopPackage){
             $desktopPackageArray[]=[
                 'id' => $desktopPackage->id,
                 'img_url' => $desktopPackage->getFirstMedia('desktop')->getUrl(),
-                'set_name'=>$desktopPackage->set_name,
+                'set_name'=>$desktopPackage->name,
                 'price'=>$desktopPackage->price,
                 'created_at'=>$desktopPackage->created_at,
                 'updated_at'=>$desktopPackage->updated_at,
@@ -93,7 +93,7 @@ class ProductListController extends Controller
         {
             $product = LaptopnPheriperals::find($id);
             $productarray = [
-                'brand_name' => $product->brand_name,
+                'brand_name' => $product->name,
                 'description' =>$product->description,
                 'price' =>$product->price,
                 'img_url' =>$product->getFirstMedia('laptops')->getUrl(),
@@ -104,7 +104,7 @@ class ProductListController extends Controller
         {
             $product = DesktopPackage::find($id);
             $productarray = [
-                'brand_name' => $product->set_name,
+                'brand_name' => $product->name,
                 'description' =>$product->description,
                 'price' =>$product->price,
                 'img_url' =>$product->getFirstMedia('desktop')->getUrl(),
@@ -132,7 +132,7 @@ class ProductListController extends Controller
         {
             $product = LaptopnPheriperals::find($id);
             $productarray = [
-                'brand_name' => $product->brand_name,
+                'brand_name' => $product->name,
                 'description' =>$product->description,
                 'price' =>$product->price,
                 'img_url' =>$product->getFirstMedia('laptops')->getUrl(),
@@ -143,7 +143,7 @@ class ProductListController extends Controller
         {
             $product = DesktopPackage::find($id);
             $productarray = [
-                'brand_name' => $product->set_name,
+                'brand_name' => $product->name,
                 'description' =>$product->description,
                 'price' =>$product->price,
                 'img_url' =>$product->getFirstMedia('desktop')->getUrl(),

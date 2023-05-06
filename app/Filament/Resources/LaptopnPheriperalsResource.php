@@ -8,6 +8,7 @@ use Filament\Resources\Form;
 use Filament\Resources\Table;
 use Filament\Resources\Resource;
 use App\Models\LaptopnPheriperals;
+use Filament\Forms\Components\Fieldset;
 use Filament\Forms\Components\Textarea;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Forms\Components\TextInput;
@@ -28,8 +29,14 @@ class LaptopnPheriperalsResource extends Resource
     {
         return $form
             ->schema([
-                TextInput::make('brand_name'),
+                TextInput::make('name'),
                 TextInput::make('prod_name'),
+                Fieldset::make('stock')
+                ->relationship('stock')
+                ->schema([
+                TextInput::make('stock')->label("")->default(0),
+                TextInput::make('category')->label("")->default('Laptop and Pheriperals')
+                ]),
                 SpatieMediaLibraryFileUpload::make('laptop')->collection('laptops'),
                 Textarea::make('description'),
                 TextInput::make('price'),
@@ -40,7 +47,7 @@ class LaptopnPheriperalsResource extends Resource
     {
         return $table
             ->columns([
-                TextColumn::make('brand_name'),
+                TextColumn::make('name'),
                 TextColumn::make('prod_name'),
                 TextColumn::make('description'),
                 TextColumn::make('price'),

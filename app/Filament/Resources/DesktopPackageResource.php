@@ -8,6 +8,7 @@ use Filament\Resources\Form;
 use Filament\Resources\Table;
 use App\Models\DesktopPackage;
 use Filament\Resources\Resource;
+use Filament\Forms\Components\Fieldset;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Forms\Components\TextInput;
 use Illuminate\Database\Eloquent\Builder;
@@ -27,8 +28,14 @@ class DesktopPackageResource extends Resource
     {
         return $form
             ->schema([
-                TextInput::make('set_name'),
+                TextInput::make('name'),
                 TextInput::make('price'),
+                Fieldset::make('stock')
+                ->relationship('stock')
+                ->schema([
+                TextInput::make('stock')->label("")->default(0),
+                TextInput::make('category')->label("")->default('Desktop'),
+                ]),
                 SpatieMediaLibraryFileUpload::make('desktop')->collection('desktop'),
             ]);
     }
@@ -37,7 +44,7 @@ class DesktopPackageResource extends Resource
     {
         return $table
             ->columns([
-                TextColumn::make('set_name'),
+                TextColumn::make('name'),
                 TextColumn::make('price'),
                 SpatieMediaLibraryImageColumn::make('desktop')->collection('desktop'),
 

@@ -12,7 +12,7 @@ class LaptopnPheriperals extends Model implements HasMedia
     use InteractsWithMedia;
     use HasFactory;
     protected $fillable = [
-        'brand_name',
+        'name',
         'prod_name',
         'description',
         'price',
@@ -22,4 +22,11 @@ class LaptopnPheriperals extends Model implements HasMedia
     {
         return $this->morphMany(CustomerTransaction::class, 'transactionable');
     }
+
+
+    public function stock()
+    {
+        return $this->morphOne(Stock::class, 'stockable');
+    }
+
 }

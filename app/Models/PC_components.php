@@ -14,7 +14,7 @@ class PC_components extends Model implements HasMedia
 
     protected $fillable = [
         'component',
-        'brand_name',
+        'name',
         'product_model',
         'description',
         'price',
@@ -25,5 +25,10 @@ class PC_components extends Model implements HasMedia
     public function transaction()
     {
         return $this->morphMany(CustomerTransaction::class, 'transactionable');
+    }
+
+    public function stock()
+    {
+        return $this->morphOne(Stock::class, 'stockable');
     }
 }

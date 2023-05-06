@@ -18,6 +18,10 @@ class CreateCustomerTransactionsTable extends Migration
             $table->foreignId('user_id')->constrained('customer_details');
             $table->unsignedBigInteger('transactionable_id');
             $table->string('transactionable_type');
+            $table->string('payment')->nullable();
+            $table->integer('quantity')->nullable();
+            $table->string('staff_atendee_id')->nullable();
+
             $table->timestamps();
         });
     }

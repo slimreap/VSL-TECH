@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreatePCComponentsTable extends Migration
+class CreateStaffTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,11 @@ class CreatePCComponentsTable extends Migration
      */
     public function up()
     {
-        Schema::create('pc_components', function (Blueprint $table) {
+        Schema::create('staff', function (Blueprint $table) {
             $table->id();
-            $table->string('component')->nullable();
-            $table->string('name')->nullable();
-            $table->string('product_model')->nullable();
-            $table->longText('description')->nullable();
-            $table->double('price')->nullable();
+            $table->string('name');
+            $table->string('description');
+            $table->string('profession');
             $table->timestamps();
         });
     }
@@ -31,6 +29,6 @@ class CreatePCComponentsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('p_c_components');
+        Schema::dropIfExists('staff');
     }
 }
