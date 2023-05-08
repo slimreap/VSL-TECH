@@ -61,7 +61,7 @@ Route::get('products/products_details/product_customer_form/product_receipt', fu
 });
 
 // route for services
-Route::get('/services',[ServiceListController::class, 'availableservices'])->name('services');
+Route::get('/services',[ServiceListController::class, 'availableservice'])->name('services');
 
 //route for viewign service details
 Route::get('services/viewservice/{servicename?}', [ServiceListController::class, 'serviceList'])->name('viewservice');
@@ -87,6 +87,12 @@ Route::get('services/viewservice/availserviceform', function (){
 Route::get('services/availserviceform/receipt', function (){
     return view('services.receipt');
 });
+
+// route for service customer form
+Route::get('services/availserviceform/{servicename?}',[ServiceListController::class,'checkoutservice'])->name('checkoutservice');
+
+// route for service submission form
+Route::post('services/availserviceform/avail',[ServiceListController::class,'confirmservice'])->name('confirmservice');
 
 // route for add to cart
 Route::post('products/addtocart', [ProductListController::class, 'addtocart'])->name('addtocart');
