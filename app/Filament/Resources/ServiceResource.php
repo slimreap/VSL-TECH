@@ -2,16 +2,18 @@
 
 namespace App\Filament\Resources;
 
-use App\Filament\Resources\ServiceResource\Pages;
-use App\Filament\Resources\ServiceResource\RelationManagers;
-use App\Models\Service;
 use Filament\Forms;
-use Filament\Resources\Form;
-use Filament\Resources\Resource;
-use Filament\Resources\Table;
 use Filament\Tables;
+use App\Models\Service;
+use Filament\Resources\Form;
+use Filament\Resources\Table;
+use Filament\Resources\Resource;
 use Illuminate\Database\Eloquent\Builder;
+use App\Filament\Resources\ServiceResource\Pages;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
+use Filament\Tables\Columns\SpatieMediaLibraryImageColumn;
+use Filament\Forms\Components\SpatieMediaLibraryFileUpload;
+use App\Filament\Resources\ServiceResource\RelationManagers;
 
 class ServiceResource extends Resource
 {
@@ -32,6 +34,8 @@ class ServiceResource extends Resource
                 Forms\Components\TextInput::make('price')
                     ->required()
                     ->maxLength(255),
+                SpatieMediaLibraryFileUpload::make('service')->collection('services'),
+
             ]);
     }
 
@@ -46,6 +50,8 @@ class ServiceResource extends Resource
                     ->dateTime(),
                 Tables\Columns\TextColumn::make('updated_at')
                     ->dateTime(),
+                SpatieMediaLibraryImageColumn::make('service')->collection('services'),
+
             ])
             ->filters([
                 //
