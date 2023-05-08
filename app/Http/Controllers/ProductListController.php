@@ -11,6 +11,7 @@ use App\Models\CustomerDetails;
 use App\Models\LaptopnPheriperals;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Session;
 
 class ProductListController extends Controller
 {
@@ -19,11 +20,12 @@ class ProductListController extends Controller
         $laptopPheriperals = LaptopnPheriperals::all();
         $PcComponents = PC_components::all();
     
-
+        $data = session()->all();
         return view('products.productlist',[
             'desktopPackages' => $desktopPackages,
             'laptopPheriperals' => $laptopPheriperals,
-            'PcComponents' => $PcComponents
+            'PcComponents' => $PcComponents,
+            
         ]);
     }
 
@@ -114,20 +116,24 @@ class ProductListController extends Controller
 
         
         // dd($laptop);
-
+        $data = session()->all();
 
         
         return view('products.productview', [
             'productdetails' => $productarray,
-            'category' => $category
+            'category' => $category,
+            'data' => $data
         ]);
     }
 
 
-    public function productcheckout($category = "",$id = ""){
+    public function productcheckout(Request $request,$category = "",$id = ""){
         $productarray = [];
 
+        Session::put('cart', 'laptop-1');
 
+        $value = Session::all();
+  
         if ($category == 'laptop' || $category == 'pheriperalsandaccessories')
         {
             $product = LaptopnPheriperals::find($id);
@@ -151,30 +157,42 @@ class ProductListController extends Controller
             ];
         }
 
-            // dd($laptoparray);
+        $data = session()->all();
         return view('buying.shippinginfo',[
             'id' => $id,
-            'productdetails' => $productarray
+            'productdetails' => $productarray,
+            'data' => $data
         ]);
     }
 
 
     public function confirmcheckout(Request $request){
-        // $customername = $request->input('completename');
-        // $emailaddress = $request->input('emailaddress');
-        // $finalcontactnumber = $request->input('finalcontactnumber');
-        // $finaladdress = $request->input('finaladdress');
-        // $finalstate = $request->input('finalstate');
-        // $productid = $request->input('productid');
+        $name = $request->input('completename');
+        $email = $request->input('emailaddress');
+        $contactnum = $request->input('finalcontactnumber');
+        $address = $request->input('finaladdress');
+        $state = $request->input('finalstate');
+        $category = $request->input('category');
+        $id = $request->input('productid');
+        $quantity = $request->input('quantity');
+   
+        if ($category == 'laptop' || $category == 'pheriperalsandaccessories')
+        {
+            $product = LaptopnPheriperals::find($id);
 
-        $laptop = LaptopnPheriperals::find(1);
+        }
+        elseif($category == 'desktoppackages')
+        {
+            $product = DesktopPackage::find($id);
+ 
+        }
 
   
             $key = 'sk_test_bKqBeUdFNkBfFV9xLKfBxN97:';
             $key = base64_encode($key);
 
-            $data['data']['attributes']['amount'] = $laptop->price;
-            $data['data']['attributes']['description'] = $laptop->description;
+            $data['data']['attributes']['amount'] = $product->price;
+            $data['data']['attributes']['description'] = $product->description;
             $response = Curl::to('https://api.paymongo.com/v1/links')
                         ->withHeader('Content-Type: application/json')
                         ->withHeader('accept: application/json')
@@ -184,19 +202,8 @@ class ProductListController extends Controller
                         ->post();
 
             return redirect($response->data->attributes->checkout_url);
-        // DB::transaction(function () use ($customername, $emailaddress, $finalcontactnumber, $finaladdress, $finalstate, $productid) {
-        //     $laptop = LaptopnPheriperals::find($productid);
-        //     $customerdetails = CustomerDetails::create([
-        //         'name' => $customername,
-        //         'email' => $emailaddress,
-        //         'contact_number' => $finalcontactnumber,
-        //         'address' => $finaladdress . ' ' . $finalstate,
-        //     ]);
-        //     $laptop->transaction()->create(['user_id' => $customerdetails->id]);
-        // });
-
-
-        
+    
+ 
 
     }
 
@@ -237,5 +244,93 @@ class ProductListController extends Controller
     }
 
 
+public function addtocart(Request $request){
+    $id = $request->input('productid');
+    $category = $request->input('cartitemcategory');
+
+    if ($category == 'laptop' || $category == 'pheriperalsandaccessories')
+    {
+        $product = LaptopnPheriperals::find($id);
+
+    }
+    elseif($category == 'desktoppackages')
+    {
+        $product = DesktopPackage::find($id);
+
+    }
+
+    
+// Initialize the session array if it doesn't exist
+if(!session()->has('options')) {
+    session()->put('options', []);
+}
+
+// Add new data to the existing session array
+$newData = [    'id' => $id,    'product' => $category,];
+session()->push('options', $newData);
+
+// $request->session()->flush();
+    $data = session()->all();
+    
+
+
+    return response()->json([
+        'data' => $data
+    ]);
+}
+
+
+public function viewcart(Request $request){
+
+//     @if(session('options'))
+//     @foreach(session('options') as $key => $value)
+//         @if(is_array($value))
+//             <p>id: {{$value['id']}}</p>
+//             <p>product: {{$value['product']}}</p>
+//         @else
+//             <p>{{$key}}: {{$value}}</p>
+//         @endif
+//     @endforeach
+// @endif
+$productarray = [];
+
+$options = collect(session('options'));
+
+$products = $options->map(function ($value, $key) {
+    if ($value['product'] == 'laptop' || $value['product'] == 'pheriperalsandaccessories') {
+        $product = LaptopnPheriperals::find($value['id']);
+        $productarray = [
+            'brand_name' => $product->name,
+            'model_name' => $product->product_model,
+            'img_url' => $product->getFirstMedia('laptops')->getUrl(),
+        ];
+    } elseif ($value['product'] == 'desktoppackages') {
+        $product = DesktopPackage::find($value['id']);
+        $productarray = [
+            'brand_name' => $product->name,
+            'model_name' => $product->product_model,
+            'img_url' => $product->getFirstMedia('desktop')->getUrl(),
+        ];
+    } elseif ($value['product'] == 'pccomponents') {
+        $product = PC_components::find($value['id']);
+        $productarray = [
+            'brand_name' => $product->name,
+            'model_name' => $product->product_model,
+            'img_url' => $product->getFirstMedia('PC_Components')->getUrl(),
+        ];
+    }
+    
+    return $productarray;
+});
+
+// Output the transformed collection
+dd($products);
+
+
+return view('products.itemviewsummary',[
+
+]);
+
+}
 
 }

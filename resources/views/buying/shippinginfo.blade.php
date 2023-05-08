@@ -30,8 +30,7 @@
         <h1 class="fs-3 p-auto" style = "font-weight: bold; margin-bottom: 30px;">Shipping Address</h1>
     </div>
     
-    <div class="card">
-        <div class="card-body">
+    <div class="card" id="shippingaddresscontainer">
             <form>
                 <div class="row mb-3">
                     <div class="col-sm-4 mb-3">
@@ -107,43 +106,38 @@
                     <div class="row"><p class="fs-4">Email Address</p></div>
                     <div class="row"><p class="fs-4">Contact Number</p></div>
                     <div class="row"><p class="fs-4">Address</p></div>
-                    <div class="row"><p class="fs-4">Barangay</p></div>
                     <div class="row"><p class="fs-4">State</p></div>
                     <div class="row"><p class="fs-4">City</p></div>
                     <div class="row"><p class="fs-4">Postal Code</p></div>
                 </div>
                 <div class="col" id="confirmshippingcontainer">
                     <div class="row mb-2">
-                        <input type="text" class="form-control" name="firstname" id="confirmfn" placeholder="First name" id="" readonly>
+                        <input type="text" class="form-control" name="firstname" id="confirmfn" placeholder="First name">
                     </div>
                     <div class="row mb-2">
                         <input type="text" class="form-control" name="lastname" id="confirmln" placeholder="Last name" id="" readonly>
                     </div>
                     <div class="row mb-2">
-                        <input type="text" class="form-control" name="middileinitial" id="confirmln" placeholder="Middle initial" id="" readonly>
+                        <input type="text" class="form-control" name="middileinitial" id="confirmmi" placeholder="Middle initial" readonly>
                     </div>
                     <div class="row g-3 mb-2">
-                        <input type="text" class="form-control" name="address" id="confirmaddress" placeholder="Adress" id="" readonly>
+                        <input type="text" class="form-control" name="email" id="confirmemail" placeholder="Email" readonly>
+                    </div>
+                    <div class="row g-3 mb-2 mt-1">
+                        <input type="text" class="form-control" name="contactnumber" id="confirmcontactnumber" placeholder="Contact number" readonly>
                     </div>
                     <div class="row g-3 mb-2">
-                        <input type="text" class="form-control" name="barangay" id="confirmbrngy" placeholder="Barangay" id="" readonly>
-            
+                        <input type="text" class="form-control" name="address" id="confirmaddress" placeholder="Adress"  readonly>
                     </div>
                     <div class="row g-2 mb-2 mt-1">
-                        <input type="text" class="form-control" name="state" id="confirmstate" placeholder="State" id="" readonly>
-                    </div>
-                    <div class="row g-3 mb-2 mt-1">
-                        <input type="text" class="form-control" name="postalcode" id="confirmpostalcode" placeholder="Postal Code" id="" readonly>
+                        <input type="text" class="form-control" name="state" id="confirmstate" placeholder="State"  readonly>
                     </div>
                     <div class="row g-3 mb-2">
-                        <input type="text" class="form-control" name="email" id="confirmemail" placeholder="Email" id="" readonly>
-                    </div>
-                    <div class="row g-3 mb-2 mt-1">
-                        <input type="text" class="form-control" name="contactnumber" id="confirmcontactnumber" placeholder="Contact number" id="" readonly>
-                    </div>
-                    <div class="row g-3 mb-2">
-                        <input type="text" class="form-control" name="city" id="confirmcity" placeholder="City" id="" readonly>
+                        <input type="text" class="form-control" name="city" id="confirmcity" placeholder="City" readonly>
                     </div>        
+                    <div class="row g-3 mb-2 mt-1">
+                        <input type="text" class="form-control" name="postalcode" id="confirmpostalcode" placeholder="Postal Code" readonly>
+                    </div>
                     
            
                 </div>
@@ -192,7 +186,7 @@
                     </div>
                     <div class="row">
                         <div class="col-6">Price:</div>
-                        <div class="col-6">{{$laptopdetails['price']}}</div>
+                        <div class="col-6">{{$productdetails['price']}}</div>
                     </div>
                     <div class="row">
                         <div class="col-6">Discount:</div>
@@ -200,7 +194,7 @@
                     </div>
                     <div class="row">
                         <div class="col-6">Total:</div>
-                        <div class="col-6">{{$laptopdetails['price']}}</div>
+                        <div class="col-6">{{$productdetails['price']}}</div>
                     </div>
                 </div>
             </div>
@@ -209,11 +203,11 @@
 
             <div class="row">
                 <div class="row text-start">
-                    <p id="name">sasuke</p>
-                    <p id="email">sar@gsad</p>
-                    <p id="contactnumber">31245213213124</p>
-                    <p id="address">konoha</p>
-                    <p id="state">ph</p>
+                    <input id="name">
+                    <input id="email">
+                    <input id="contactnumber">
+                    <input id="address">
+                    <input id="state">
 
                 </div>
 
@@ -232,19 +226,45 @@
                 </div>
             </div>
             <div class="row" style="margin-botom: 10px;">
-               <div class="col"></div>
+               
                <div class="col hidden">
-                <form action="{{route('confirmcheckout')}}" method="get">
+                <form action="{{route('confirmcheckout')}}" id="checkoutform" method="get">
                     @csrf 
+                    <input type="text" id="category" name="category" hidden>
                     <input type="text" name="productid" hidden value="{{$productdetails['id']}}">
                     <input type="text" id="checkoutfullname" hidden name="completename">
                     <input type="text" id="checkoutemailaddress" hidden name="emailaddress">
                     <input type="text" id="checkoutfinalcontactnumber" hidden name="finalcontactnumber">
                     <input type="text" id="checkoutfinaladdress" hidden name="finaladdress">
                     <input type="text" id="checkoutfinalstate"hidden  name="finalstate">
-                    <button type="submit" class="btn-primary rounded-pill">
-                        Checkout
-                    </button>
+
+                    <div class="row m-auto">
+
+                        <div class="card-header" style="font-size: 14px; background: #4F0354; color: white;">
+                            <p>Available: In Stock</p>
+                          </div>
+                          <div class="card-body">
+                            <div class="row">
+                              <div class="col-sm-5">
+                                
+                                <h5 style="font-size: 14px;">Price</h5>
+                                <p style="font-size: 14px;">$49.99</p>
+                              </div>
+                              <div class="col-sm-7">
+                                <h5 style="font-size: 14px;">Quantity</h5>
+                                <div class="quantity">
+                                  <input step="1" id="quantity" min="1" max="10" name="quantity" value="1" title="Qty" class="input-text qty text" style="font-size: 14px;" size="4" type="number">
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+
+                        <button type="submit" class="btn-primary rounded-pill p-auto">
+                            Checkout
+                        </button>
+                    </div>
+
                 </form>
                </div>
             </div>
@@ -262,7 +282,21 @@ document.addEventListener("DOMContentLoaded", function() {
     var inputElementsforshippingform = document.querySelectorAll("#shippingaddresscontainer input[type='text']");
     var inputElementsforconfirmshipping = document.querySelectorAll("#confirmshippingcontainer input[type='text']");
     var confirmbtn = document.getElementById('confirmshippingaddress');
+    var confirmdetails = document.getElementById('confirmdetails');
+    var checkoutform = document.getElementById('checkoutform');
+    var inputcategory = document.getElementById('category');
     var confirmshippingarray = [];
+
+
+const url = window.location.href;
+    const slugs = url.split("/"); // split the URL string into an array of slugs
+
+    const category = slugs[slugs.length - 2]; // get the second to the last slug
+
+    console.log(category); // outputs "page"
+    
+    inputcategory.value = category;
+
 
 
     confirmbtn.addEventListener('click',function(){
@@ -283,42 +317,45 @@ for (var i = 0; i < inputElementsforconfirmshipping.length; i++) {
 
 
 confirmdetails.addEventListener('click',function(){
-    var firstname = document.getElementById('confirmfn');
-    var lastname = document.getElementById('confirmln');
-    var email = document.getElementById('confirmemail');
-    var contactnumber = document.getElementById('confirmcontactnumber');
-    var address = document.getElementById('confirmaddress');
-    var barangay = document.getElementById('confirmbrngy');
-    var city = document.getElementById('confirmcity');
-    var state = document.getElementById('confirmstate');
 
-    var completename = document.getElementById('name');
-    var emailaddress = document.getElementById('email');
-    var finalcontactnumber = document.getElementById('contactnumber');
-    var finaladdress = document.getElementById('address');
-    var finalstate = document.getElementById('state');
+    var confirmfn = document.getElementById('confirmfn');
+    var confirmln = document.getElementById('confirmln');
+    var confirmmi = document.getElementById('confirmmi');
+    var confirmemail = document.getElementById('confirmemail');
+    var confirmcontactnumber = document.getElementById('confirmcontactnumber');
+    var confirmaddress = document.getElementById('confirmaddress');
+    var confirmstate = document.getElementById('confirmstate');
+    var confirmcity = document.getElementById('confirmcity');
+    var confirmpostal = document.getElementById('confirmpostalcode');
 
 
-    var checkoutfullname = document.getElementById('checkoutfullname');
-    var checkoutemailaddress = document.getElementById('checkoutemailaddress');
-    var checkoutfinalcontactnumber = document.getElementById('checkoutfinalcontactnumber');
-    var checkoutfinaladdress = document.getElementById('checkoutfinaladdress');
-    var checkoutfinalstate = document.getElementById('checkoutfinalstate');
+    var checkoutname = document.getElementById('name');
+    var checkoutemail = document.getElementById('email');
+    var checkoutfinalcontactnumber = document.getElementById('contactnumber');
+    var checkoutfinaladdress = document.getElementById('address');
+    var checkoutfinalstate = document.getElementById('state');
 
- 
+    // form
+    var formcheckoutname = document.getElementById('checkoutfullname');
+    var formcheckoutemail = document.getElementById('checkoutemailaddress');
+    var formcheckoutfinalcontactnumber = document.getElementById('checkoutfinalcontactnumber');
+    var formcheckoutfinaladdress = document.getElementById('checkoutfinaladdress');
+    var formcheckoutfinalstate = document.getElementById('checkoutfinalstate');
+     
 
 
-    completename.innerHTML = firstname.value + " " + lastname.value;
-    emailaddress.innerHTML = email.value;
-    finalcontactnumber.innerHTML = contactnumber.value;
-    finaladdress.innerHTML = address.value + ", " + barangay.value + ", " + city.value;
-    finalstate.innerHTML = state.value;
+    checkoutname.value = confirmln.value + ", " + confirmmi.value + " " + confirmfn.value;
+    checkoutemail.value = confirmemail.value;
+    checkoutfinalcontactnumber.value = confirmcontactnumber.value;
+    checkoutfinaladdress.value = confirmaddress.value;
+    checkoutfinalstate.value = confirmstate.value;
 
-    checkoutfullname.value = completename.innerHTML;
-    checkoutemailaddress.value = mailaddress.innerHTML;
-    checkoutfinalcontactnumber.value = finalcontactnumber.innerHTML;
-    checkoutfinaladdress.value = finaladdress.innerHTML;
-    checkoutfinalstate.value =     finalstate.innerHTML;
+
+    formcheckoutname.value = checkoutname.value;
+    formcheckoutemail.value = checkoutemail.value;
+    formcheckoutfinalcontactnumber.value = checkoutfinalcontactnumber.value;
+    formcheckoutfinaladdress.value = checkoutfinaladdress.value;
+    formcheckoutfinalstate.value = checkoutfinalstate.value;
 
 });
 
@@ -331,25 +368,4 @@ confirmdetails.addEventListener('click',function(){
 });
 </script>
 </x-productslayout>
-{{-- 
-<form>
 
-
-
-
-
-    <div class="mb-3">
-      <label for="exampleInputEmail1" class="form-label">Email address</label>
-      <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
-      <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
-    </div>
-    <div class="mb-3">
-      <label for="exampleInputPassword1" class="form-label">Password</label>
-      <input type="password" class="form-control" id="exampleInputPassword1">
-    </div>
-    <div class="mb-3 form-check">
-      <input type="checkbox" class="form-check-input" id="exampleCheck1">
-      <label class="form-check-label" for="exampleCheck1">Check me out</label>
-    </div>
-    <button type="submit" class="btn btn-primary">Submit</button>
-  </form> --}}

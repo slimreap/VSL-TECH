@@ -16,6 +16,7 @@ class CreateDesktopPackagesTable extends Migration
         Schema::create('desktop_packages', function (Blueprint $table) {
             $table->id();
             $table->string('name')->nullable();
+            $table->string('product_model')->nullable();
             $table->double('price')->nullable();
             $table->timestamps();
         });

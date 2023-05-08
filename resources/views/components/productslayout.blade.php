@@ -16,13 +16,13 @@
 
 </head>
 
-<body>
-    <x-navbar/>
+<body class="position-relative">
+  <x-navbar />
     <x-products.productcategory/>
 
     {{$slot}}
     
-<x-footer/>
+
 </body>
 
 </html>
