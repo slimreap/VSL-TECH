@@ -17,7 +17,7 @@
 </head>
 
 <body class="position-relative">
-  <x-navbar />
+  <x-navbar/>
     <x-products.productcategory/>
 
     {{$slot}}

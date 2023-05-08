@@ -86,3 +86,12 @@ Route::post('products/addtocart', [ProductListController::class, 'addtocart'])->
 //Route  Item bagview
 Route::get('products/itemviewsummary',[ProductListController::class,'viewcart'])->name('itemviewsummary');
 
+
+
+//Route  Bulk checkout
+Route::post('products/itemviewsummary/bulkcheckout',[ProductListController::class,'bulkcheckout'])->name('bulkcheckout');
+
+
+//Route  Payment status
+Route::get('admin/payment/status',[ProductListController::class,'paymentstatus'])->name('');
+

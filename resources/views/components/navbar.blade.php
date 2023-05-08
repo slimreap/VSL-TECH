@@ -29,6 +29,7 @@
         <a id="cart-btn" class="nav-link" href="{{route('itemviewsummary')}}" style="color: white;">
           <span style="display: flex; align-items: center;">
             <i id="cart-icon" class="bi bi-bag-fill" style="font-size: 30px; color: white;"></i>
+
             <span id="cart-count" class="bg-danger text-white rounded-pill" style="font-size: 12px; padding: 2px 5px; margin-left: -10px;">0</span>
           </span>
         </a>
@@ -37,44 +38,5 @@
   </div>
 </nav>
 
-
-<!-- JavaScript function to update the number displayed on the bag icon -->
-<script>
-  function updateCartCount(count) {
-    const cartCount = document.getElementById("cart-count");
-    cartCount.textContent = count;
-    cartCount.style.display = count > 0 ? "inline-block" : "none";
-  }
-  
-  // Example usage
-  updateCartCount(1); // Updates the number displayed on the bag icon to 2
-
-// Update the cart count when an item is added to the bag
-const addToBagBtn = document.querySelector('#add-to-bag-modal .btn-primary');
-addToBagBtn.addEventListener('click', () => {
-  const cartCount = document.getElementById('cart-count');
-  const currentCount = Number(cartCount.innerText);
-  cartCount.innerText = currentCount + 1;
-  addToBagModal.hide();
-});
-
-// Reset the modal when it's closed
-addToBagModal.addEventListener('hidden.bs.modal', () => {
-  const addToBagForm = document.querySelector('#add-to-bag-modal form');
-  addToBagForm.reset();
-});
-//functions of for quantity and price
-const itemPrice = document.getElementById('item-price');
-const itemQuantity = document.getElementById('item-quantity');
-const increaseQuantityBtn = document.getElementById('increase-quantity-btn');
-
-increaseQuantityBtn.addEventListener('click', () => {
-  let quantity = parseInt(itemQuantity.value);
-  quantity++;
-  itemQuantity.value = quantity;
-  itemPrice.innerText = (quantity * 10).toFixed(2); // Update the price based on quantity
-});
-
-</script>
-
+<script src="{{asset('js/addCart.js')}}"></script>
 

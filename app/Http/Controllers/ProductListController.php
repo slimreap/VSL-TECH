@@ -9,6 +9,7 @@ use Ixudra\Curl\Facades\Curl;
 use App\Models\DesktopPackage;
 use App\Models\CustomerDetails;
 use App\Models\LaptopnPheriperals;
+use App\Models\Reciept;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Session;
@@ -282,16 +283,6 @@ session()->push('options', $newData);
 
 public function viewcart(Request $request){
 
-//     @if(session('options'))
-//     @foreach(session('options') as $key => $value)
-//         @if(is_array($value))
-//             <p>id: {{$value['id']}}</p>
-//             <p>product: {{$value['product']}}</p>
-//         @else
-//             <p>{{$key}}: {{$value}}</p>
-//         @endif
-//     @endforeach
-// @endif
 $productarray = [];
 
 $options = collect(session('options'));
@@ -301,6 +292,7 @@ $products = $options->map(function ($value, $key) {
         $product = LaptopnPheriperals::find($value['id']);
         $productarray = [
             'brand_name' => $product->name,
+            'price' => $product->price,
             'model_name' => $product->product_model,
             'img_url' => $product->getFirstMedia('laptops')->getUrl(),
         ];
@@ -308,6 +300,7 @@ $products = $options->map(function ($value, $key) {
         $product = DesktopPackage::find($value['id']);
         $productarray = [
             'brand_name' => $product->name,
+            'price' => $product->price,
             'model_name' => $product->product_model,
             'img_url' => $product->getFirstMedia('desktop')->getUrl(),
         ];
@@ -315,6 +308,7 @@ $products = $options->map(function ($value, $key) {
         $product = PC_components::find($value['id']);
         $productarray = [
             'brand_name' => $product->name,
+            'price' => $product->price,
             'model_name' => $product->product_model,
             'img_url' => $product->getFirstMedia('PC_Components')->getUrl(),
         ];
@@ -323,13 +317,129 @@ $products = $options->map(function ($value, $key) {
     return $productarray;
 });
 
-// Output the transformed collection
-dd($products);
-
 
 return view('products.itemviewsummary',[
-
+    'products' => $products
 ]);
+
+}
+
+
+
+// bulk checkout function
+
+public function bulkcheckout(Request $request) {
+        $name = $request->input('firstname') . " " . $request->input('middleinitial') . " " . $request->input('lastname') ;
+        $email = $request->input('email');
+        $contact_number = $request->input('contactnumber');
+        $address = $request->input('address');
+        $state = $request->input('state');
+        $city = $request->input('city');
+        $postalcode = $request->input('postalcode');
+
+
+$options = collect(session('options'));
+
+$products = $options->map(function ($value, $key) {
+    if ($value['product'] == 'laptop' || $value['product'] == 'pheriperalsandaccessories') {
+        $product = LaptopnPheriperals::find($value['id']);
+        $productarray = [
+            'brand_name' => $product->name,
+            'price' => $product->price,
+            'category' => $value['product'],
+            'model_name' => $product->product_model,
+            'img_url' => $product->getFirstMedia('laptops')->getUrl(),
+        ];
+    } elseif ($value['product'] == 'desktoppackages') {
+        $product = DesktopPackage::find($value['id']);
+        $productarray = [
+            'brand_name' => $product->name,
+            'category' => $value['product'],
+            'price' => $product->price,
+            'model_name' => $product->product_model,
+            'img_url' => $product->getFirstMedia('desktop')->getUrl(),
+        ];
+    } elseif ($value['product'] == 'pccomponents') {
+        $product = PC_components::find($value['id']);
+        $productarray = [
+            'brand_name' => $product->name,
+            'category' => $value['product'],
+            'price' => $product->price,
+            'model_name' => $product->product_model,
+            'img_url' => $product->getFirstMedia('PC_Components')->getUrl(),
+        ];
+    }
+    
+    return $productarray;
+});
+    $totalamount = 0;
+    $customerorder = [];
+    foreach($products as $product){
+        $customerorder[] = [
+            'model_name' => $product['model_name'],
+            'category' => $product['category'],
+            'TotalPrice' => $totalamount += intval($request->input('quantity.'.$product['model_name'])) * $product['price'],
+            'quantity' => $product['model_name'] . "-" . $request->input('quantity.'.$product['model_name'])
+        ];
+    }
+
+    $modelNames = implode('_', array_column($customerorder, 'model_name'));
+    $modelNames = str_replace(',', '_', $modelNames);
+    
+    Reciept::create([
+        'name' => $name,
+        'email' => $email,
+        'contact_number' => $contact_number,
+        'address' => $address,
+        'state' => $state,
+        'city' => $city,
+        'postalcode' => $postalcode,
+        'totalamount' => 'unpaid',
+        'quantity' =>  implode(', ', array_column($customerorder, 'quantity')),
+    ]);
+
+
+    $key = 'sk_test_bKqBeUdFNkBfFV9xLKfBxN97:';
+    $key = base64_encode($key);
+
+    $data['data']['attributes']['amount'] = $totalamount * 100;
+    $data['data']['attributes']['description'] = implode(', ', array_column($customerorder, 'model_name'));
+    $response = Curl::to('https://api.paymongo.com/v1/links')
+                ->withHeader('Content-Type: application/json')
+                ->withHeader('accept: application/json')
+                ->withHeader('Authorization: Basic '. $key .'')
+                ->withData($data)
+                ->asJson()
+                ->post();
+
+    return redirect($response->data->attributes->checkout_url);
+ 
+
+}
+
+
+public function paymentstatus() {
+    $key = 'sk_test_bKqBeUdFNkBfFV9xLKfBxN97:';
+    $key = base64_encode($key);
+    $response = Curl::to('https://api.paymongo.com/v1/payments?limit=10')
+                ->withHeader('Content-Type: application/json')
+                ->withHeader('accept: application/json')
+                ->withHeader('Authorization: Basic '. $key .'')
+                ->asJson()
+                ->get();
+
+
+    foreach($response->data as $data){
+        Reciept::where('email', $data->attributes->billing->email)->update([
+            'totalamount' => $data->attributes->amount,
+
+        ]);    
+    }
+   
+    // foreach($response->data as $data){
+    //     dd($data->attributes->billing);
+    // }
+
 
 }
 

@@ -13,7 +13,8 @@ class DesktopPackage extends Model implements HasMedia
     use HasFactory;
 
     protected $fillable = [
-        'name',
+        'name', 
+        'product_model', 
         'price',
     ];
     public function transaction()

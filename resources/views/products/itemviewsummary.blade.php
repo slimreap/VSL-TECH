@@ -10,32 +10,29 @@
                 <div class="row">
                     <div class="col-lg-6 col-md-6">
                         <div class="card">
-                            @if(session('options'))
-                                @foreach(session('options') as $key => $value)
-                                    @if(is_array($value))
-                                        <p>id: {{$value['id']}}</p>
-                                        <p>product: {{$value['product']}}</p>
-                                    @else
-                                        <p>{{$key}}: {{$value}}</p>
-                                    @endif
-                                @endforeach
-                            @endif
-                            <div class="row no-gutters">
-                                <div class="col-md-4">
-                                    <img src="https://via.placeholder.com/150" class="card-img" alt="...">
-                                </div>
-                                <div class="col-md-8">
-                                    <div class="card-body">
-                                        <h5 class="card-title">Item Name</h5>
-                                        <p class="card-text">Price: $<span id="item-price">10</span></p>
-                                        <div class="input-group mb-3">
-                                            <span class="input-group-text">Quantity:</span>
-                                            <input id="item-quantity" type="number" class="form-control" aria-label="Quantity" value="1" min="1">
-                                            <button id="increase-quantity-btn" class="btn btn-outline-secondary" type="button">+</button>
-                                        </div>
-                                    </div>
+
+                    <form action="{{route('bulkcheckout')}}" method="post">
+                        @csrf
+                    @foreach ($products as $product)
+               
+                    <div class="row no-gutters">
+                        <div class="col-md-4">
+                            <img src="{{$product['img_url']}}" class="card-img" alt="...">
+                        </div>
+                        <div class="col-md-8">
+                            <div class="card-body">
+                                <h5 class="card-title">{{$product['model_name']}}</h5>
+                                <p class="card-text">Price: $<span id="item-price">{{$product['price']}}</span></p>
+                                <div class="input-group mb-3">
+                                    <span class="input-group-text">Quantity:</span>
+                                    <input id="" type="number" class="form-control" aria-label="Quantity" value="1" min="1" name="quantity[{{$product['model_name']}}]">
+                                    <button id="" class="btn btn-outline-secondary" type="button">+</button>
                                 </div>
                             </div>
+                        </div>
+                    </div>
+                    @endforeach
+                
                         </div>
                     </div>
                 </div>
@@ -90,13 +87,14 @@
                         <div class="row">
                             <div class="row">
                                 <!-- Button trigger modal -->
-                                <button type="button" class="btn rounded-pill text-white" style = "background: #4F0354;" id="confirmshippingaddress" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                                <button type="submit" class="btn rounded-pill text-white" style = "background: #4F0354;" id="confirmshippingaddress" data-bs-toggle="modal" data-bs-target="#exampleModal">
                                     Confirm
                                 </button>
                             </div>
                             <div class="row">
                                 <button class="btn-light rounded-pill">Cancel</button>
                             </div>
+                        </form>
                         </div>
                     </form>
                 </div>

@@ -29,7 +29,8 @@ class DesktopPackageResource extends Resource
         return $form
             ->schema([
                 TextInput::make('name'),
-                TextInput::make('price'),
+                TextInput::make('price'), 
+                TextInput::make('product_model'), 
                 Fieldset::make('stock')
                 ->relationship('stock')
                 ->schema([
