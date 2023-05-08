@@ -29,7 +29,7 @@
     <h2>IT SERVICES</h2>
 </div>
 
-<section id="shop-section"  >
+{{--<section id="shop-section"  >
       <div class="row">
           <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12 margin_bottom_30_all">
           <div class="product_list">
@@ -146,5 +146,28 @@
       </div>
       </div>
   </div>
-</section>
+</section>--}}
+
+<div class="container">
+    <div class="row">
+      @foreach ($data as $dataservice)
+      <div class="col-md-3 mb-4">
+        <div class="card">
+            <div class="ratio ratio-4x3 d-flex justify-content-center align-items-center" style="margin: 10 10 10">
+                <img class="card-img-top" src="{{$dataservice['img_url']}}" alt="{{$dataservice['service_name']}}" style="max-width: 100%; max-height: 100%;">
+              </div>
+          <div class="card-body text-center">
+            <h5 class="card-title" style="font-weight: bold;">{{$dataservice['service_name']}}</h5>
+            <p class="card-text">{{$dataservice['price']}}</p>
+            <a href="{{ route('viewservice', ['servicename' => $dataservice['id']]) }}" class="btn btn-primary"  >Avail</a>
+          </div>
+        </div>
+      </div>
+      
+      @endforeach
+    </div>
+  </div>
+
+</div>
+
 </x-serviceslayout>

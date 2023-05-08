@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Pc_componentsController;
 use App\Http\Controllers\ProductListController;
+use App\Http\Controllers\ServiceListController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -46,6 +47,7 @@ Route::get('/products/productspheriperals', function () {
     return view('products.productspheriperals');
 })->name('productspheriperals');
 
+
 Route::get('products/products_details', function(){
     return view('productview');
 });
@@ -59,23 +61,29 @@ Route::get('products/products_details/product_customer_form/product_receipt', fu
 });
 
 // route for services
-Route::get('/services', function () {
-    return view('services.services');
-})->name('services');
+Route::get('/services',[ServiceListController::class, 'availableservices'])->name('services');
 
+//route for viewign service details
+Route::get('services/viewservice/{servicename?}', [ServiceListController::class, 'serviceList'])->name('viewservice');
+
+//route for service customer form
+Route::get('services/viewservices/availserviceform/{id?}', [ServiceListController::class, 'serviceCustomerForm'])->name('serviceCustomerForm');
 // route for listing of pc components
 Route::get('/products/pccomponents/{component?}', [Pc_componentsController::class, 'listpccomponents'])->name('productspccomponents');
 
 
 // route for services
-Route::get('services/availserviceform', function (){
-    return view('services.availserviceform');
-});
+
 
 //might change the url path 
 Route::get('services/viewservice', function(){
     return view('services.viewservice   ');
 });
+
+Route::get('services/viewservice/availserviceform', function (){
+    return view('services.availserviceform');
+});
+
 Route::get('services/availserviceform/receipt', function (){
     return view('services.receipt');
 });
