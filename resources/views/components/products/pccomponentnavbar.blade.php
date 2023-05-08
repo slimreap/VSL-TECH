@@ -61,50 +61,8 @@
                 background-size: 30px 30px; "
             name="" id="">
     </div>
-</div>
+        </div>
 
 
     </div>
 </div>
-{{-- <div class="container-shop">
-    <h2>COMPUTER SETS:</h2>
-  <nav class="navbar1-columns">
-    <ul>
-      <li><a class="nav-link scrollto " href="{{route('productspccomponents',['component' => 'Chassis Fan'])}}">Chassis Fan</a></li>  
-      <li><a class="nav-link scrollto" href="{{route('productspccomponents',['component' => 'CPU-Cooling'])}}">CPU Cooling</a></li>
-      <li><a class="nav-link scrollto " href="{{route('productspccomponents',['component' => 'Graphics Card'])}}">Graphics Card</a></li>
-    </ul>
-  </nav>
-  <nav class="navbar1-columns">
-    <ul>
-        <li><a class="nav-link scrollto " href="{{route('productspccomponents',['component' => 'Hard Disk'])}}">Hard Disk</a></li>  
-        <li><a class="nav-link scrollto" href="{{route('productspccomponents',['component' => 'Memory'])}}">Memory</a></li>
-        <li><a class="nav-link scrollto " href="{{route('productspccomponents',['component' => 'Motherboard'])}}">Motherboard</a></li>
-    </ul>
-  </nav>
-  <nav class="navbar1-columns">
-    <ul>
-        <li><a class="nav-link scrollto " href="{{route('productspccomponents',['component' => 'PC Case'])}}">PC Case</a></li>  
-        <li><a class="nav-link scrollto" href="{{route('productspccomponents',['component' => 'Power Supply'])}}">Power Supply</a></li>
-        <li><a class="nav-link scrollto " href="#nine">Processor</a></li>
-    </ul>
-  </nav>
-  <nav class="navbar1-columns">
-    <ul>
-        <li><a class="nav-link scrollto " href="{{route('productspccomponents',['component' => 'Processor Tray'])}}">Processor Tray</a></li>  
-        <li><a class="nav-link scrollto" href="{{route('productspccomponents',['component' => 'Solid State Drive'])}}">Solid State Drive</a></li>
-    </ul>
-  </nav>
-
-  <div class="col">
-    <div class="row text-white fs-3 w-25">
-         <p class="fs-3">Find your needs :</p>
-         <input class="rounded-pill" type="text" 
-         style="padding-right: 20px;
-         background-image: url('{{asset('storage/img/magnifying glass.png')}}');
-         background-repeat: no-repeat;
-         background-position: right center;
-         background-size: 30px 30px; " name="" id="">
-    </div>
-</div>
- --}}

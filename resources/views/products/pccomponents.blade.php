@@ -3,9 +3,6 @@
         PC Components
     </x-slot>
 
-
-    <x-products.pccomponentnavbar/>
-
     <div class="row">
     @foreach ($pccomponents as $components)
         <div class="col">

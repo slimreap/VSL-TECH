@@ -10,8 +10,23 @@
   </button>
   <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
     <div class="navbar-nav">
-      <a class="nav-link" href="{{route('productspccomponents')}}">PC Components</a>
-      <!-- dropdown for laptop -->
+      <div class="dropdown">
+        <a class="nav-link dropdown-toggle" href="#" role="button" id="PcComponentssDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          PC Components
+        </a>
+        <ul class="dropdown-menu hide" aria-labelledby="laptopDropdown">
+          <li><a class="dropdown-item" href="{{route('productspccomponents',['component' => 'Chassis Fan'])}}">Chassis Fan</a></li>
+          <li><a class="dropdown-item" href="{{route('productspccomponents',['component' => 'CPU-Cooling'])}}">CPU Cooling</a></li>
+          <li><a class="dropdown-item" href="{{route('productspccomponents',['component' => 'Graphics Card'])}}">Graphics card</a></li>
+          <li><a class="dropdown-item" href="{{route('productspccomponents',['component' => 'Hard Disk'])}}">Hard Disk</a></li>
+          <li><a class="dropdown-item" href="{{route('productspccomponents',['component' => 'Memory'])}}">Memory</a></li>
+          <li><a class="dropdown-item" href="{{route('productspccomponents',['component' => 'Motherboard'])}}">Motherboard</a></li>
+          <li><a class="dropdown-item" href="{{route('productspccomponents',['component' => 'PC Case'])}}">PC Case</a></li>
+          <li><a class="dropdown-item" href="{{route('productspccomponents',['component' => 'Power Supply'])}}">Power Supply</a></li>
+          <li><a class="dropdown-item" href="{{route('productspccomponents',['component' => 'Solid State Drive'])}}">SSD</a></li>
+        </ul>
+      </div>
+        <!-- dropdown for laptop -->
       <div class="dropdown">
         <a class="nav-link dropdown-toggle" href="" role="button" id="laptopDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           Laptops
@@ -50,10 +65,10 @@
         </a>
 
         <ul class="dropdown-menu hide" aria-labelledby="DeskstopPackagesDropdown">
-          <li><a class="dropdown-item" href="{{route('producsPeripheralsNaccessories', ['brandname'=>'Cables'])}}">Cables</a></li>
-          <li><a class="dropdown-item" href="{{route('producsPeripheralsNaccessories', ['brandname'=>'Earphone'])}}">Earphone</a></li>
-          <li><a class="dropdown-item" href="{{route('producsPeripheralsNaccessories', ['brandname'=>'Mouse Pad'])}}">Mouse Pad</a></li>
-          <li><a class="dropdown-item" href="{{route('producsPeripheralsNaccessories', ['brandname'=>'Power Bank'])}}">Power Bank</a></li>
+          <li><a class="dropdown-item" href="{{route('productslaptops',['brandname' => 'Cables'])}}">Cables</a></li>
+          <li><a class="dropdown-item" href="{{route('productslaptops',['brandname' => 'Earphone'])}}">Earphone</a></li>
+          <li><a class="dropdown-item" href="{{route('productslaptops',['brandname' => 'Mouse Pad'])}}">Mouse Pad</a></li>
+          <li><a class="dropdown-item" href="{{route('productslaptops',['brandname' => 'Power Bank'])}}">Power Bank</a></li>
         </ul>
       </div>
 

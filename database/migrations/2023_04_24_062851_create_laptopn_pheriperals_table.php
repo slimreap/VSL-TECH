@@ -16,7 +16,7 @@ class CreateLaptopnPheriperalsTable extends Migration
         Schema::create('laptopn_pheriperals', function (Blueprint $table) {
             $table->id();
             $table->string('name')->nullable();
-            $table->string('prod_name')->nullable();
+            $table->string('product_model')->nullable();
             $table->longText('description')->nullable();
             $table->double('price');
             $table->timestamps();

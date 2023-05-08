@@ -4,18 +4,16 @@ namespace App\View\Components;
 
 use Illuminate\View\Component;
 
-class Navbar extends Component
+class Customerinfomodal extends Component
 {
     /**
      * Create a new component instance.
      *
      * @return void
      */
-
-     public $data;
     public function __construct()
     {
-        $this->data = session()->all();
+        //
     }
 
     /**
@@ -25,6 +23,6 @@ class Navbar extends Component
      */
     public function render()
     {
-        return view('components.navbar');
+        return view('components.customerinfomodal');
     }
 }

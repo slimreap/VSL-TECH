@@ -1,13 +1,10 @@
-<x-productslayout>
+<x-productslayout >
     <x-slot name="title">
         Desktop Packages
      </x-slot>
  
        
 
-
-    </div>
-</div>
 
 <div class="container">
     <div class="row">

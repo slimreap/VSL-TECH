@@ -13,7 +13,7 @@ class LaptopnPheriperals extends Model implements HasMedia
     use HasFactory;
     protected $fillable = [
         'name',
-        'prod_name',
+        'product_model',
         'description',
         'price',
     ];

@@ -87,3 +87,10 @@ Route::get('services/viewservice/availserviceform', function (){
 Route::get('services/availserviceform/receipt', function (){
     return view('services.receipt');
 });
+
+// route for add to cart
+Route::post('products/addtocart', [ProductListController::class, 'addtocart'])->name('addtocart');
+
+//Route  Item bagview
+Route::get('products/itemviewsummary',[ProductListController::class,'viewcart'])->name('itemviewsummary');
+

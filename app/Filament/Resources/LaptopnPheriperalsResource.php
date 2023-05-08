@@ -30,7 +30,7 @@ class LaptopnPheriperalsResource extends Resource
         return $form
             ->schema([
                 TextInput::make('name'),
-                TextInput::make('prod_name'),
+                TextInput::make('product_model'),
                 Fieldset::make('stock')
                 ->relationship('stock')
                 ->schema([
@@ -48,7 +48,7 @@ class LaptopnPheriperalsResource extends Resource
         return $table
             ->columns([
                 TextColumn::make('name'),
-                TextColumn::make('prod_name'),
+                TextColumn::make('product_model'),
                 TextColumn::make('description'),
                 TextColumn::make('price'),
                 SpatieMediaLibraryImageColumn::make('laptop')->collection('laptops'),
