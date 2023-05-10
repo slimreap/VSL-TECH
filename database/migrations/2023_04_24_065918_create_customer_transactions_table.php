@@ -19,11 +19,12 @@ class CreateCustomerTransactionsTable extends Migration
             $table->unsignedBigInteger('transactionable_id');
             $table->string('transactionable_type');
             $table->string('payment')->nullable();
-            $table->string('paid')->nullable();
-            $table->timestamp('datesold')->nullable();
-            $table->integer('quantity')->nullable();
-            $table->string('staff_atendee_id')->nullable();
-
+            $table->timestamp('payment_date')->nullable();
+            $table->string('quantity')->nullable();
+            $table->string('tracking_number')->nullable();
+            $table->integer('total_amount')->nullable();
+            $table->timestamp('delivery_date')->nullable();
+            $table->string('order_status')->nullable();
             $table->timestamps();
         });
     }

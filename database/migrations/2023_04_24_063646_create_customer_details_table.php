@@ -19,8 +19,8 @@ class CreateCustomerDetailsTable extends Migration
             $table->string('email')->nullable();
             $table->string('contact_number')->nullable();
             $table->string('address')->nullable();
+            $table->string('state')->nullable();
             $table->string('city')->nullable();
-            $table->string('servicerequesttype')->nullable();
             $table->integer('postal_code')->nullable();
 
 

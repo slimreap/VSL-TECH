@@ -13,7 +13,14 @@ class CustomerTransaction extends Model
     
 
     protected $fillable = [
-        'user_id'
+        'user_id',
+        'payment',
+        'payment_date',
+        'quantity',
+        'tracking_number',
+        'total_amount',
+        'delivery_date',
+        'order_status',
     ];
     public function customerdetails()
     {

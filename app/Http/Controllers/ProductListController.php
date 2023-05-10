@@ -3,14 +3,16 @@
 namespace App\Http\Controllers;
 
 use GuzzleHttp\Client;
+use App\Models\Reciept;
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use App\Models\PC_components;
 use Ixudra\Curl\Facades\Curl;
 use App\Models\DesktopPackage;
 use App\Models\CustomerDetails;
 use App\Models\LaptopnPheriperals;
-use App\Models\Reciept;
 use Illuminate\Support\Facades\DB;
+use App\Models\CustomerTransaction;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Session;
 
@@ -177,7 +179,10 @@ class ProductListController extends Controller
         $category = $request->input('category');
         $id = $request->input('productid');
         $quantity = $request->input('quantity');
-   
+        $postal = $request->input('finalpostal');
+        $city = $request->input('finalcity');
+        $shippingfee = 50;
+
         if ($category == 'laptop' || $category == 'pheriperalsandaccessories')
         {
             $product = LaptopnPheriperals::find($id);
@@ -189,8 +194,33 @@ class ProductListController extends Controller
  
         }
 
+        $customer = CustomerDetails::create([
+            'name' =>  $name,
+            'email' => $email,
+            'contact_number' => $contactnum,
+            'address' =>  $address,
+            'state' => $state,
+            'city' => $city,
+            'postal_code' => $postal
+        ]);
+
+        // generate tracking number
+        $trackingNumber = Str::random(10); // Generate a random string of length 10
+
+        // Ensure the generated tracking number is unique
+        while (CustomerTransaction::where('tracking_number', $trackingNumber)->exists()) {
+            $trackingNumber = Str::random(10);
+        }
+
+
+        $customer->customertransaction->create([
+            'quantity' => $quantity,
+            'tracking_number' => $trackingNumber,
+            'total_amount' => intval($product->price) + intval($shippingfee),
+        ]);
+
   
-            $key = 'sk_test_bKqBeUdFNkBfFV9xLKfBxN97:';
+            $key = 'sk_test_646DMYvwqigghxvnzfJpJXVh:';
             $key = base64_encode($key);
 
             $data['data']['attributes']['amount'] = $product->price;
@@ -203,8 +233,8 @@ class ProductListController extends Controller
                         ->asJson()
                         ->post();
 
-            return redirect($response->data->attributes->checkout_url);
-    
+            // return redirect($response->data->attributes->checkout_url);
+            return response()->json(['success' => 'yyeah']);
  
 
     }
@@ -400,7 +430,7 @@ $products = $options->map(function ($value, $key) {
     ]);
 
 
-    $key = 'sk_test_bKqBeUdFNkBfFV9xLKfBxN97:';
+    $key = 'sk_test_646DMYvwqigghxvnzfJpJXVh:';
     $key = base64_encode($key);
 
     $data['data']['attributes']['amount'] = $totalamount * 100;
@@ -420,7 +450,7 @@ $products = $options->map(function ($value, $key) {
 
 
 public function paymentstatus() {
-    $key = 'sk_test_bKqBeUdFNkBfFV9xLKfBxN97:';
+    $key = 'sk_test_646DMYvwqigghxvnzfJpJXVh:';
     $key = base64_encode($key);
     $response = Curl::to('https://api.paymongo.com/v1/payments?limit=10')
                 ->withHeader('Content-Type: application/json')
@@ -430,11 +460,15 @@ public function paymentstatus() {
                 ->get();
 
 
-    foreach($response->data as $data){
-        Reciept::where('email', $data->attributes->billing->email)->update([
-            'totalamount' => $data->attributes->amount,
+    
+        return response()->json([
+            'response' => $response
+        ]);
+    // foreach($response->data as $data){
+    //     Reciept::where('email', $data->attributes->billing->email)->update([
+    //         'totalamount' => $data->attributes->amount,
 
-        ]);    
+    //     ]);    
     }
    
     // foreach($response->data as $data){
@@ -444,4 +478,4 @@ public function paymentstatus() {
 
 }
 
-}
+
