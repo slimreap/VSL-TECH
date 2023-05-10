@@ -22,7 +22,7 @@
                         <div class="col-md-8">
                             <div class="card-body">
                                 <h5 class="card-title">{{$product['model_name']}}</h5>
-                                <p class="card-text">Price: $<span id="item-price">{{$product['price']}}</span></p>
+                                <p class="card-text">Price: ₱<span id="item-price">{{$product['price']}}</span></p>
                                 <div class="input-group mb-3">
                                     <span class="input-group-text">Quantity:</span>
                                     <input id="" type="number" class="form-control" aria-label="Quantity" value="1" min="1" name="quantity[{{$product['model_name']}}]">

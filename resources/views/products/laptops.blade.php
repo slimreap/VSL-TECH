@@ -2,64 +2,45 @@
  <x-slot name="title">
     Laptops
  </x-slot>
-<style>
-  
-  .card {
-  position: relative;
-  transition: all 0.3s ease-out;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
-  border-radius: 5px;
-  overflow: hidden;
-  height: 400px; /* add a fixed height */
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.card:hover {
-  transform: translateY(-10px);
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.5);
-}
-
-.card img {
-  display: block;
-  width: 100%;
-  height: 195px; /* add a fixed height for the image */
-  object-fit: cover; /* scale the image to fit inside the container */
-  align-content: center;
-}
-
-.card .price {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  padding: 10px;
-  background-color: rgba(255, 255, 255, 0.8);
-  font-size: 18px;
-  font-weight: bold;
-  text-align: center;
-}
-
-
+ <style>
+      .card {
+            transition: transform 0.2s ease-in-out;
+            height: 100%;
+            margin-top: 30px;
+        }
+        .card:hover {
+            transform: scale(1.05);
+        }
+        .card-body {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        height: 100%;
+        }
 </style>
- {{-- subnavbar --}}
- <div class="container">
+
+<div class="container">
     <div class="row">
-      <div class="col-12">
-        <div class="row">
-          @foreach ($laptops as $laptop)
-          <div class="col-md-3">
-            <a href="{{route('productform',['category' => 'laptop', 'id' => $laptop['id']])}}" class="card">
-              <img src="{{$laptop['img_url']}}" alt="">
-              <div class="price">Price: ₱{{$laptop['price']}}</div>
-            </a>
+      @foreach ($laptops as $laptop)
+      <div class="col-md-3 mb-3">
+        <div class="card h-100" style="margin-top: 30px;">
+          <a href="{{route('productform')}}">
+            <img class="card-img-top" src="{{$laptop['img_url']}}" alt="">
+          </a>
+          <div class="card-body d-flex flex-column justify-content-center">
+            <h5 class="card-title mb-0 text-center" style="font-weight: bold;">{{$laptop['brand_name']}}</h5>
+            <p class="card-text mb-0 text-center" style="font-weight: bold;">{{$laptop['product_model']}}</p>
+            <p class="card-text text-center"><span style="font-weight: bold;">Price: </span> ₱ {{$laptop['price']}}</p>
           </div>
-          @endforeach
         </div>
       </div>
+      @endforeach
     </div>
   </div>
+  
+
 
 <div id="searchresult">
 

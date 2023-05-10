@@ -52,7 +52,7 @@ class ProductListController extends Controller
             $laptoparray[] = [
                 'id' => $laptop->id,
                 'brand_name' => $laptop->name,
-                'prod_name' => $laptop->prod_name,
+                'product_model' => $laptop->product_model,
                 'description' => $laptop->description,
                 'price' => $laptop->price,
                 'img_url' => $laptop->getFirstMedia('laptops')->getUrl(),
@@ -77,6 +77,7 @@ class ProductListController extends Controller
                 'id' => $desktopPackage->id,
                 'img_url' => $desktopPackage->getFirstMedia('desktop')->getUrl(),
                 'set_name'=>$desktopPackage->name,
+                'product_model'=>$desktopPackage->product_model,
                 'price'=>$desktopPackage->price,
                 'created_at'=>$desktopPackage->created_at,
                 'updated_at'=>$desktopPackage->updated_at,
