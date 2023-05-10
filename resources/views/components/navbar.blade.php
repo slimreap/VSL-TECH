@@ -26,11 +26,16 @@
         </a>
       </div>
       <div class="collapse navbar-collapse col justify-content-end">
+        <!-- For tracking item -->
+        <a href="{{route('trackItem')}}">
+          <i class="bi bi-geo-alt-fill" style="font-size: 30px; color: white;">Track Item</i>
+        </a>
+        <!-- Item bag -->
         <a id="cart-btn" class="nav-link" href="{{route('itemviewsummary')}}" style="color: white;">
           <span style="display: flex; align-items: center;">
             <i id="cart-icon" class="bi bi-bag-fill" style="font-size: 30px; color: white;"></i>
 
-            <span id="cart-count" class="bg-danger text-white rounded-pill" style="font-size: 12px; padding: 2px 5px; margin-left: -10px;">0</span>
+           <!-- <span id="cart-count" class="bg-danger text-white rounded-pill" style="font-size: 12px; padding: 2px 5px; margin-left: -10px;">0</span> -->
           </span>
         </a>
       </div>

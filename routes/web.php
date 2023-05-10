@@ -109,3 +109,13 @@ Route::post('products/itemviewsummary/bulkcheckout',[ProductListController::clas
 //Route  Payment status
 Route::get('admin/payment/status',[ProductListController::class,'paymentstatus'])->name('');
 
+
+//Route of order tracking
+Route::get('products/tracking_items', function(){
+    return view('products.tracking_items ');
+})->name('trackItem');
+
+//Route of tracking ordered details
+Route::get('products/tracking_items/tracking_items_details', function(){
+    return view('products.tracking_item_details');
+})->name('trackedItemDetails');

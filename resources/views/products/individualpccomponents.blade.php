@@ -33,14 +33,12 @@
                     <div class="center"> <i class="fa fa-star" aria-hidden="true"></i><i class="fa fa-star" aria-hidden="true"></i> <i class="fa fa-star" aria-hidden="true"></i> <i class="fa fa-star" aria-hidden="true"></i> <i class="fa fa-star-o" aria-hidden="true"></i> </div>
                 </div>
                 <div class="product_price">
-                    <p><span class="old_price">$15.00</span> – <span class="new_price">{{$componentvariable->price}}</span></p>
+                    <p><span class="new_price">{{$componentvariable->price}}</span></p>
                 </div>
                 </div>
             </div>
             </div>
             @endforeach
-
         </div>
     </div>
-
 </x-productslayout>

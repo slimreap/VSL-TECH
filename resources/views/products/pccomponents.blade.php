@@ -8,19 +8,16 @@
         <div class="col">
 
             <a href="">
-                <img class="w-100" src="{{asset('storage/E-commerce/1920-x-700-Intel-13th-gen-D21T.png')}}" alt="">
+                <img class="w-100" src="{{$components['img_url']}}" alt="">
             </a>
             <div class="">
-                {{$components->brand_name}}
+                {{$components['brand_name']}}
             </div>
             <div class="">
-                {{$components->product_model}}
+                {{$components['product_model']}}
             </div>
             <div class="">
-                {{$components->description}}
-            </div>
-            <div class="">
-                {{$components->price}}
+                {{$components['price']}}
             </div>
         </div>
 

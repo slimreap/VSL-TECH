@@ -3,9 +3,6 @@
         Desktop Packages
      </x-slot>
  
-       
-
-
 <div class="container">
     <div class="row">
         <div class="col-12">
@@ -27,7 +24,4 @@
         </div>
     </div>
 </div>
-
-
-
 </x-productslayout>

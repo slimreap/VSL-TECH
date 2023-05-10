@@ -46,11 +46,11 @@
           slideIndex++;
           if (slideIndex > slides.length) {slideIndex = 1}
           slides[slideIndex-1].style.display = "block";
-          setTimeout(showSlides, 5000); /* Change 5000 to your desired interval in milliseconds */
+          setTimeout(showSlides, 2000); /* Change 5000 to your desired interval in milliseconds */
         }
         </script>
 
-    <!-- products display -->
+    {{--<!-- products display -->
         @if (!$desktopPackages->isEmpty())
             
       
@@ -90,11 +90,11 @@
                 </div>
             </div>
     @endif
-    
+    --}}
             {{-- LAPTOP PHERIPERALS SECTION --}}
 
         
-    @if (!$laptopPheriperals->isEmpty())
+    {{--@if (!$laptopPheriperals->isEmpty())
             <div class="row">
                 <div class="col-md-12">
                 <div class="full">
@@ -130,12 +130,12 @@
             </div>
         </div>
 @endif
-
+--}}
         {{-- PC COMPONENTS SECTION --}}
 
-        @if (!$PcComponents->isEmpty())
+       {{-- @if (!$PcComponents->isEmpty())--}}
            {{-- LAPTOP PHERIPERALS SECTION --}}
-           <div class="row">
+           {{--<div class="row">
             <div class="col-md-12">
             <div class="full">
                 <div class="main_heading text_align_center">
@@ -170,4 +170,5 @@
     </div>
 
 @endif
+--}}
 </x-productslayout>

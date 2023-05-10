@@ -73,8 +73,6 @@
       </div>
 
       <!-- search bar-->
-      
-        
     </div>
   </div>
   <div class="container-fluid d-flex justify-content-end">
@@ -84,21 +82,31 @@
     </form>
   </div>
 </nav>
+
 <script>
- function handleDropdown() {
+function handleDropdown() {
   const dropdownToggles = document.querySelectorAll('.dropdown-toggle');
+  let activeMenu = null;
   dropdownToggles.forEach(toggle => {
     toggle.addEventListener('click', function(e) {
       e.preventDefault();
       const dropdownMenu = this.nextElementSibling;
-      dropdownMenu.classList.toggle('show');
-      dropdownMenu.classList.toggle('hide');
+      if (activeMenu !== dropdownMenu) {
+        if (activeMenu) {
+          activeMenu.classList.remove('show');
+          activeMenu.classList.add('hide');
+        }
+        dropdownMenu.classList.remove('hide');
+        dropdownMenu.classList.add('show');
+        activeMenu = dropdownMenu;
+      } else {
+        dropdownMenu.classList.remove('show');
+        dropdownMenu.classList.add('hide');
+        activeMenu = null;
+      }
     });
   });
 }
-
 // Call the function to initialize the dropdowns
 handleDropdown();
 </script>
-
-
