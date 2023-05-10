@@ -84,7 +84,7 @@ display: flex;
                 </span>
 
               <!-- Button for adding item to cart -->
-                <button class="border-0" type="submit" onclick="addToBag()">
+                <button class="border-0" id="btnaddtocart" type="submit" onclick="addToBag()">
                   <i class="bi bi-cart-plus-fill float-start bi-lg" style="font-size: 18px; color:#4F0354 "></i>
                 </button>
               </div>
@@ -129,7 +129,12 @@ display: flex;
   console.log(category); // outputs "page"
   
   inputcategory.value = category;
-  $('#addtocartform').submit(function(event) {
+
+  $('#btnaddtocart').click(function(){
+    $('#addtocartform').submit();
+  });
+  
+  $('#addtocartform').on('submit',function(event) {
     event.preventDefault(); // Prevent form submission
     var formData = new FormData(this); // Create an instance of FormData from the form element
     var url = $(this).attr('action'); // Get the form action attribute

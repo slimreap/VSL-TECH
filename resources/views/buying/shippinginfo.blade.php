@@ -237,6 +237,8 @@
                     <input type="text" id="checkoutfinalcontactnumber" hidden name="finalcontactnumber">
                     <input type="text" id="checkoutfinaladdress" hidden name="finaladdress">
                     <input type="text" id="checkoutfinalstate"hidden  name="finalstate">
+                    <input type="text" id="checkoutfinalpostal"hidden  name="finalpostal">
+                    <input type="text" id="checkoutfinalcity"hidden  name="finalcity">
 
                     <div class="row m-auto">
 
@@ -341,7 +343,9 @@ confirmdetails.addEventListener('click',function(){
     var formcheckoutfinalcontactnumber = document.getElementById('checkoutfinalcontactnumber');
     var formcheckoutfinaladdress = document.getElementById('checkoutfinaladdress');
     var formcheckoutfinalstate = document.getElementById('checkoutfinalstate');
-     
+    var formcheckoutfinalpostal = document.getElementById('checkoutfinalpostal');
+    var formcheckoutfinalcity = document.getElementById('checkoutfinalcity');
+    
 
 
     checkoutname.value = confirmln.value + ", " + confirmmi.value + " " + confirmfn.value;
@@ -356,6 +360,8 @@ confirmdetails.addEventListener('click',function(){
     formcheckoutfinalcontactnumber.value = checkoutfinalcontactnumber.value;
     formcheckoutfinaladdress.value = checkoutfinaladdress.value;
     formcheckoutfinalstate.value = checkoutfinalstate.value;
+    formcheckoutfinalpostal.value = confirmpostal.value;
+    formcheckoutfinalcity.value = confirmcity.value;
 
 });
 

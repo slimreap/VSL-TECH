@@ -14,6 +14,7 @@ class CustomerDetails extends Model
         'email',
         'contact_number',
         'address',
+        'state',
         'city',
         'postal_code',
     ];
