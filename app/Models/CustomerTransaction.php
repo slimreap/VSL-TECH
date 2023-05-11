@@ -18,8 +18,10 @@ class CustomerTransaction extends Model
         'payment_date',
         'quantity',
         'tracking_number',
+        'payment_link',
         'total_amount',
         'delivery_date',
+        'delivery_status',
         'order_status',
     ];
     public function customerdetails()

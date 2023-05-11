@@ -87,12 +87,12 @@
                         <div class="row">
                             <div class="row">
                                 <!-- Button trigger modal -->
-                                <button type="submit" class="btn rounded-pill text-white" style = "background: #4F0354;" id="confirmshippingaddress" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                                <button type="submit" class="btn rounded-pill text-white" style = "background: #4F0354; width: 30%;" id="confirmshippingaddress" data-bs-toggle="modal" data-bs-target="#exampleModal">
                                     Confirm
                                 </button>
                             </div>
                             <div class="row">
-                                <button class="btn-light rounded-pill">Cancel</button>
+                                <button class="btn-light rounded-pill" style="width: 30%; margin-bottom: 20px;">Cancel</button>
                             </div>
                         </form>
                         </div>

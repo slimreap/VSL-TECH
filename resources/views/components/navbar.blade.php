@@ -16,11 +16,11 @@
         <a href="{{route('trackItem')}}" class="nav-link"><i class="bi bi-geo-alt-fill" style="font-size: 30px;"></i>Track Item</a>
         <a href="{{route('itemviewsummary')}}" class="nav-link">
           <i id="cart-icon" class="bi bi-bag-fill" style="font-size: 30px;"></i>
-          <span class="badge bg-danger text-white">0</span>
+          <span class="badge bg-danger text-white">{{$count = collect(session('options'))->count()}}</span>
         </a>
       </div>
     </div>
   </div>
 </nav>
-<script src="{{asset('js/addCart.js')}}"></script>
+
 

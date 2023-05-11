@@ -76,8 +76,9 @@
     </div>
   </div>
   <div class="container-fluid d-flex justify-content-end">
-    <form class="d-flex">
-      <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+    <form class="d-flex" id="formsearch" action="{{route('search')}}" method="post">
+      @csrf
+      <input class="form-control me-2" name="search" id="search" type="search" placeholder="Search" aria-label="Search">
       <button class="btn btn-outline-light" type="submit">Search</button>
     </form>
   </div>
@@ -109,4 +110,8 @@ function handleDropdown() {
 }
 // Call the function to initialize the dropdowns
 handleDropdown();
+
+
+
+
 </script>

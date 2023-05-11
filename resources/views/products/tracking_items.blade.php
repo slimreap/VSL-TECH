@@ -6,12 +6,13 @@
     <div class="container d-flex justify-content-center" style="margin-top: 10%;">
         <div class="col-md-6">
           <h3 class="font-weight-bold text-center mb-4"style="font-weight: bold; color: #4F0354;">TRACK YOUR ORDER</h3>
-          <form>
+          <form method="post" action="{{route('trackingsystem')}}">
+            @csrf
             <div class="form-group">
-              <input type="text" class="form-control" id="trackNumber" placeholder="Order Number*">
+              <input type="text" class="form-control" name="tracknumber" id="trackNumber" placeholder="Order Number*">
             </div>
             <div class="form-group mt-4">
-              <input type="email" class="form-control" id="emailaddress" placeholder="Email*">
+              <input type="email" class="form-control" id="emailaddress" name="emailaddress" placeholder="Email*">
             </div>
 
             <div class="form-group mt-4">

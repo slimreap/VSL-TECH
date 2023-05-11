@@ -14,6 +14,7 @@ use App\Models\LaptopnPheriperals;
 use Illuminate\Support\Facades\DB;
 use App\Models\CustomerTransaction;
 use Illuminate\Support\Facades\Hash;
+use App\Notifications\SendTrackingNo;
 use Illuminate\Support\Facades\Session;
 
 class ProductListController extends Controller
@@ -170,6 +171,8 @@ class ProductListController extends Controller
     }
 
 
+    // CHECKOUT FOR SINGLE PRODUCT
+
     public function confirmcheckout(Request $request){
         $name = $request->input('completename');
         $email = $request->input('emailaddress');
@@ -194,37 +197,32 @@ class ProductListController extends Controller
  
         }
 
-        $customer = CustomerDetails::create([
-            'name' =>  $name,
-            'email' => $email,
-            'contact_number' => $contactnum,
-            'address' =>  $address,
-            'state' => $state,
-            'city' => $city,
-            'postal_code' => $postal
-        ]);
+        // check if customer has record
+       if (CustomerDetails::where('email', $email)->exists()) 
+       {
+            $customer = CustomerDetails::where('email',$email)->first();
+       }
+       else
+       {
+            $customer = CustomerDetails::create([
+                'name' =>  $name,
+                'email' => $email,
+                'contact_number' => $contactnum,
+                'address' =>  $address,
+                'state' => $state,
+                'city' => $city,
+                'postal_code' => $postal
+            ]);
+       }
 
-        // generate tracking number
-        $trackingNumber = Str::random(10); // Generate a random string of length 10
-
-        // Ensure the generated tracking number is unique
-        while (CustomerTransaction::where('tracking_number', $trackingNumber)->exists()) {
-            $trackingNumber = Str::random(10);
-        }
-
-
-        $customer->customertransaction->create([
-            'quantity' => $quantity,
-            'tracking_number' => $trackingNumber,
-            'total_amount' => intval($product->price) + intval($shippingfee),
-        ]);
+       $totalamount = intval($product->price) + intval($shippingfee);
 
   
             $key = 'sk_test_646DMYvwqigghxvnzfJpJXVh:';
             $key = base64_encode($key);
 
-            $data['data']['attributes']['amount'] = $product->price;
-            $data['data']['attributes']['description'] = $product->description;
+            $data['data']['attributes']['amount'] = $totalamount * 100;
+            $data['data']['attributes']['description'] = $product->name;
             $response = Curl::to('https://api.paymongo.com/v1/links')
                         ->withHeader('Content-Type: application/json')
                         ->withHeader('accept: application/json')
@@ -233,27 +231,76 @@ class ProductListController extends Controller
                         ->asJson()
                         ->post();
 
-            // return redirect($response->data->attributes->checkout_url);
-            return response()->json(['success' => 'yyeah']);
+            
+        // generate tracking number
+        $trackingNumber = Str::random(10); // Generate a random string of length 10
+
+        // Ensure the generated tracking number is unique
+        while (CustomerTransaction::where('tracking_number', $trackingNumber)->exists()) {
+            $trackingNumber = Str::random(10);
+        }
+
+        $customer->notify(new SendTrackingNo($trackingNumber));
+        $product->transaction()->create([
+            'quantity' => $quantity,
+            'user_id' => $customer->id,
+            'total_amount' => $totalamount,
+            'tracking_number' => $trackingNumber,
+            'payment_link' => $response->data->id
+        ]);
+
+
+            return redirect($response->data->attributes->checkout_url);
+            // return response()->json(['success' => 'yyeah']);
  
 
     }
 
 
-    public function searchlaptop(Request $request){
-        $laptoparray = [];
-        $laptop = $request->input('query');
+    public function search(Request $request){
+        $productarray = [];
+        $product = $request->input('search');
+        // dd($product);
+        if(LaptopnPheriperals::where('product_model', 'like', "%$product%")->orWhere('name', 'like', "%$product%")->exists()){
+            $productCollection = LaptopnPheriperals::where('product_model', 'like', "%$product%")->get();
+   
+            foreach ($productCollection as $product) {
+                $productarray[] = [
+                    'name' => $product->name,
+                    'product_model' => $product->product_model,
+                    'price' => $product->price,
+                    'img_url' => $product->getFirstMedia('laptops')->getUrl()
+                ];
+            }
+            
+        }
+        if(DesktopPackage::where('product_model', 'like', "%$product%")->orWhere('name', 'like', "%$product%")->exists()){
+            $productCollection = DesktopPackage::where('product_model', 'like', "%$product%")->get();
 
-        $laptoparray = LaptopnPheriperals::where('prod_name', 'like', "%$laptop%")->get();
+             foreach ($productCollection as $product) {
+                $productarray[] = [
+                    'name' => $product->name,
+                    'product_model' => $product->product_model,
+                    'price' => $product->price,
+                    'img_url' => $product->getFirstMedia('desktop')->getUrl()
+                ];
+            }
+        }
+        if(PC_components::where('product_model', 'like', "%$product%")->orWhere('name', 'like', "%$product%")->exists()){
+            $productCollection = PC_components::where('product_model', 'like', "%$product%")->get();
+            foreach ($productCollection as $product) {
+                $productarray[] = [
+                    'name' => $product->name,
+                    'product_model' => $product->product_model,
+                    'price' => $product->price,
+                    'img_url' => $product->getFirstMedia('PC_Components')->getUrl()
+                ];
+            }
+        }
 
-        foreach ($laptoparray as $laptop) {
-            $laptop->img_url = $laptop->getFirstMedia('laptops')->getUrl();
-          }
-        // return view('search-results', compact('posts'));
-        // dd($laptop);
         return response()->json([
             'success' => true,
-            'data' => $laptoparray,
+            'data' => $productarray,
             // 'laptopimgurl' => $laptopimgurl
         ]);
     }
@@ -276,6 +323,7 @@ class ProductListController extends Controller
     }
 
 
+    // ADD TO CART FUNCTION
 public function addtocart(Request $request){
     $id = $request->input('productid');
     $category = $request->input('cartitemcategory');
@@ -298,7 +346,7 @@ if(!session()->has('options')) {
 }
 
 // Add new data to the existing session array
-$newData = [    'id' => $id,    'product' => $category,];
+$newData = [    'id' => $id,    'product' => $category, 'price' => $product->price, 'name' => $product->name];
 session()->push('options', $newData);
 
 // $request->session()->flush();
@@ -312,6 +360,7 @@ session()->push('options', $newData);
 }
 
 
+// DISPLAYING CART FUNCTION
 public function viewcart(Request $request){
 
 $productarray = [];
@@ -357,8 +406,16 @@ return view('products.itemviewsummary',[
 
 
 
-// bulk checkout function
+// MULTIPLE PRODUCTS CHECKOUT FUNCTION
+protected $laptop_quantity;
+protected $desktop_quantity;
+protected $component_quantity;
+protected $totalamount;
 
+protected $product_name;
+protected $response;
+protected $trackingNumber;
+protected $customer;
 public function bulkcheckout(Request $request) {
         $name = $request->input('firstname') . " " . $request->input('middleinitial') . " " . $request->input('lastname') ;
         $email = $request->input('email');
@@ -369,7 +426,69 @@ public function bulkcheckout(Request $request) {
         $postalcode = $request->input('postalcode');
 
 
+
+
+        $this->laptop_quantity = 0;
+        $this->desktop_quantity = 0;
+        $this->component_quantity = 0;
+        $this->totalamount = 0;
+        $this->product_name = '';
+        $this->response;
+
+       
+        // generate tracking number
+        $this->trackingNumber = Str::random(10); // Generate a random string of length 10
+
+        // Ensure the generated tracking number is unique
+        while (CustomerTransaction::where('tracking_number', $this->trackingNumber)->exists()) {
+            $trackingNumber = Str::random(10);
+        };
+
+
+           // check if customer has record
+           if (CustomerDetails::where('email', $email)->exists()) 
+           {
+                $this->customer = CustomerDetails::where('email',$email)->first();
+           }
+           else
+           {
+            $this->customer = CustomerDetails::create([
+                    'name' =>  $name,
+                    'email' => $email,
+                    'contact_number' => $contact_number,
+                    'address' =>  $address,
+                    'state' => $state,
+                    'city' => $city,
+                    'postal_code' => $postalcode
+                ]);
+           }
+
+
 $options = collect(session('options'));
+
+
+$products = $options->map(function ($value, $key) {
+
+        $this->totalamount += $value['price'];
+        $this->product_name .= $value['name'] . '-';
+    
+});
+// dd($this->product_name);
+// payment link
+$key = 'sk_test_646DMYvwqigghxvnzfJpJXVh:';
+$key = base64_encode($key);
+
+$data['data']['attributes']['amount'] = $this->totalamount * 100;
+$data['data']['attributes']['description'] = $this->product_name;
+$this->response = Curl::to('https://api.paymongo.com/v1/links')
+            ->withHeader('Content-Type: application/json')
+            ->withHeader('accept: application/json')
+            ->withHeader('Authorization: Basic '. $key .'')
+            ->withData($data)
+            ->asJson()
+            ->post();
+
+$this->customer->notify(new SendTrackingNo($this->trackingNumber));
 
 $products = $options->map(function ($value, $key) {
     if ($value['product'] == 'laptop' || $value['product'] == 'pheriperalsandaccessories') {
@@ -381,6 +500,15 @@ $products = $options->map(function ($value, $key) {
             'model_name' => $product->product_model,
             'img_url' => $product->getFirstMedia('laptops')->getUrl(),
         ];
+        $this->laptop_quantity++;
+        $product->transaction()->create([
+            'quantity' => $this->laptop_quantity,
+            'payment_link' => $this->response->data->id,
+            'user_id' => $this->customer->id,
+            'total_amount' => $this->totalamount,
+            'tracking_number' => $this->trackingNumber,
+        ]);
+
     } elseif ($value['product'] == 'desktoppackages') {
         $product = DesktopPackage::find($value['id']);
         $productarray = [
@@ -390,6 +518,14 @@ $products = $options->map(function ($value, $key) {
             'model_name' => $product->product_model,
             'img_url' => $product->getFirstMedia('desktop')->getUrl(),
         ];
+        $this->desktop_quantity++;
+        $product->transaction()->create([
+            'quantity' => $this->desktop_quantity,
+            'payment_link' => $this->response->data->id,
+            'user_id' => $this->customer->id,
+            'total_amount' => $this->totalamount,
+            'tracking_number' => $this->trackingNumber,
+        ]);
     } elseif ($value['product'] == 'pccomponents') {
         $product = PC_components::find($value['id']);
         $productarray = [
@@ -399,51 +535,20 @@ $products = $options->map(function ($value, $key) {
             'model_name' => $product->product_model,
             'img_url' => $product->getFirstMedia('PC_Components')->getUrl(),
         ];
+        $product->transaction()->create([
+            'quantity' => $this->laptop_quantity,
+            'payment_link' => $this->response->data->id,
+            'user_id' => $this->customer->id,
+            'total_amount' => $this->totalamount,
+            'tracking_number' => $this->trackingNumber,
+        ]);
     }
     
     return $productarray;
 });
-    $totalamount = 0;
-    $customerorder = [];
-    foreach($products as $product){
-        $customerorder[] = [
-            'model_name' => $product['model_name'],
-            'category' => $product['category'],
-            'TotalPrice' => $totalamount += intval($request->input('quantity.'.$product['model_name'])) * $product['price'],
-            'quantity' => $product['model_name'] . "-" . $request->input('quantity.'.$product['model_name'])
-        ];
-    }
-
-    $modelNames = implode('_', array_column($customerorder, 'model_name'));
-    $modelNames = str_replace(',', '_', $modelNames);
-    
-    Reciept::create([
-        'name' => $name,
-        'email' => $email,
-        'contact_number' => $contact_number,
-        'address' => $address,
-        'state' => $state,
-        'city' => $city,
-        'postalcode' => $postalcode,
-        'totalamount' => 'unpaid',
-        'quantity' =>  implode(', ', array_column($customerorder, 'quantity')),
-    ]);
 
 
-    $key = 'sk_test_646DMYvwqigghxvnzfJpJXVh:';
-    $key = base64_encode($key);
-
-    $data['data']['attributes']['amount'] = $totalamount * 100;
-    $data['data']['attributes']['description'] = implode(', ', array_column($customerorder, 'model_name'));
-    $response = Curl::to('https://api.paymongo.com/v1/links')
-                ->withHeader('Content-Type: application/json')
-                ->withHeader('accept: application/json')
-                ->withHeader('Authorization: Basic '. $key .'')
-                ->withData($data)
-                ->asJson()
-                ->post();
-
-    return redirect($response->data->attributes->checkout_url);
+    return redirect($this->response->data->attributes->checkout_url);
  
 
 }
@@ -459,10 +564,10 @@ public function paymentstatus() {
                 ->asJson()
                 ->get();
 
-
+    session()->flush();
     
         return response()->json([
-            'response' => $response
+            'response' => $response->data
         ]);
     // foreach($response->data as $data){
     //     Reciept::where('email', $data->attributes->billing->email)->update([

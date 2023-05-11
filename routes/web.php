@@ -3,6 +3,7 @@
 use App\Http\Controllers\Pc_componentsController;
 use App\Http\Controllers\ProductListController;
 use App\Http\Controllers\ServiceListController;
+use App\Http\Controllers\TrackingController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -35,7 +36,7 @@ Route::get('/products/checkout/{category?}/{id?}', [ProductListController::class
 // route for laptop customer checkout
 Route::get('/products/details/{category?}/{id?}', [ProductListController::class, 'laptopcustomerform'])->name('productform');
 // route for laptop search
-Route::post('/products/laptops/search', [ProductListController::class, 'searchlaptop'])->name('searchlaptop');
+Route::post('/products/search', [ProductListController::class, 'search'])->name('search');
 
 
 
@@ -119,3 +120,7 @@ Route::get('products/tracking_items', function(){
 Route::get('products/tracking_items/tracking_items_details', function(){
     return view('products.tracking_item_details');
 })->name('trackedItemDetails');
+
+
+//Post request for tracking product
+Route::post('products/tracking_items/tracking_items_details', [TrackingController::class, 'trackproduct'])->name('trackingsystem');

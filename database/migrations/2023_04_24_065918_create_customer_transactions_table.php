@@ -22,7 +22,9 @@ class CreateCustomerTransactionsTable extends Migration
             $table->timestamp('payment_date')->nullable();
             $table->string('quantity')->nullable();
             $table->string('tracking_number')->nullable();
+            $table->string('payment_link')->nullable();
             $table->integer('total_amount')->nullable();
+            $table->string('delivery_status')->nullable();
             $table->timestamp('delivery_date')->nullable();
             $table->string('order_status')->nullable();
             $table->timestamps();
